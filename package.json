@@ -31,6 +31,7 @@
     ]
   },
   "lint-staged": {
+    "**/tsx,ts": "eslint --fix",
     "**/*": "prettier --write --ignore-unknown"
   },
   "browserslist": {
