@@ -12,7 +12,9 @@ const Header = () => {
 
   return (
     <header className="header">
-      <div className="logo">Logo</div>
+      <div className="logo">
+        <img src={"/logo/pokemon.webp"} alt="pokemon logo" />
+      </div>
 
       <div className="right-section">
         <div className="menu-box">
