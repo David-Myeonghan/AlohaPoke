@@ -1,3 +1,6 @@
+@use "../../styles/color" as color;
+@use "../../styles/text" as text;
+
 .header {
   box-sizing: border-box;
   border: 1px solid black;
@@ -9,7 +12,7 @@
 
   padding: 8px 12px;
 
-  background-color: #1f2949;
+  background-color: map-get(color.$theme-header, background);
 }
 
 .logo {
@@ -41,19 +44,22 @@
 .menu-button {
   border: 0;
   text-align: center;
-  color: #fff;
-  text-shadow: 1px 1px 1px #000;
-  background-color: #7dbffb;
+  color: map-get(color.$theme-header, button1-color);
+  background-color: map-get(color.$theme-header, button1);
+
+  font-size: text.$button-small-size;
+  font-weight: text.$button-small-weight;
+  line-height: text.$button-small-line-height;
 
   width: fit-content;
-  padding: 8px 12px;
+  padding: text.$button-small-padding;
   border-radius: 8px;
 
   &:hover {
-    background-color: #1f2949;
+    background-color: darken(map-get(color.$theme-header, button1), 10%);
   }
   &:active {
-    background-color: #0083ca;
+    background-color: darken(map-get(color.$theme-header, button1), 20%);
   }
 }
 

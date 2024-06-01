@@ -1,4 +1,4 @@
-import "./Header.css";
+import "./Header.scss";
 import { ChangeEvent, useState } from "react";
 
 const MenuItem = [{ name: "menu1" }, { name: "menu2" }, { name: "menu3" }];
