@@ -1,5 +1,6 @@
 import "./Header.scss";
 import { ChangeEvent, useState } from "react";
+import { Button } from "../index";
 
 const MenuItem = [{ name: "menu1" }, { name: "menu2" }, { name: "menu3" }];
 const Header = () => {
@@ -19,9 +20,7 @@ const Header = () => {
       <div className="right-section">
         <div className="menu-box">
           {MenuItem.map((menu) => (
-            <button key={menu.name} className="menu-button">
-              {menu.name}
-            </button>
+            <Button menu={menu} />
           ))}
         </div>
         <div>

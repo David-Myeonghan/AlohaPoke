@@ -1,0 +1,24 @@
+@use "../../styles/color" as color;
+@use "../../styles/text" as text;
+
+.menu-button {
+  border: 0;
+  text-align: center;
+  color: map-get(color.$theme-header, button1-color);
+  background-color: map-get(color.$theme-header, button1);
+
+  font-size: text.$button-small-size;
+  font-weight: text.$button-small-weight;
+  line-height: text.$button-small-line-height;
+
+  width: fit-content;
+  padding: text.$button-small-padding;
+  border-radius: 8px;
+
+  &:hover {
+    background-color: darken(map-get(color.$theme-header, button1), 10%);
+  }
+  &:active {
+    background-color: darken(map-get(color.$theme-header, button1), 20%);
+  }
+}
