@@ -4,8 +4,8 @@
 .menu-button {
   border: 0;
   text-align: center;
-  color: map-get(color.$theme-header, button1-color);
-  background-color: map-get(color.$theme-header, button1);
+  color: map-get(color.$theme-header, button-menu-color);
+  background-color: map-get(color.$theme-header, button-menu-background);
 
   font-size: text.$button-small-size;
   font-weight: text.$button-small-weight;
@@ -16,9 +16,15 @@
   border-radius: 8px;
 
   &:hover {
-    background-color: darken(map-get(color.$theme-header, button1), 10%);
+    background-color: darken(
+      map-get(color.$theme-header, button-menu-background),
+      10%
+    );
   }
   &:active {
-    background-color: darken(map-get(color.$theme-header, button1), 20%);
+    background-color: darken(
+      map-get(color.$theme-header, button-menu-background),
+      20%
+    );
   }
 }
