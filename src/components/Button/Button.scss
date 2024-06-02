@@ -1,19 +1,10 @@
 @use "../../styles/color" as color;
 @use "../../styles/text" as text;
+@use "../../styles/mixins";
 
-.menu-button {
-  border: 0;
-  text-align: center;
-  color: map-get(color.$theme-header, button-menu-color);
+.button-menu {
+  @include mixins.button-common-styles;
   background-color: map-get(color.$theme-header, button-menu-background);
-
-  font-size: text.$button-small-size;
-  font-weight: text.$button-small-weight;
-  line-height: text.$button-small-line-height;
-
-  width: fit-content;
-  padding: text.$button-small-padding;
-  border-radius: 8px;
 
   &:hover {
     background-color: darken(
@@ -25,6 +16,24 @@
     background-color: darken(
       map-get(color.$theme-header, button-menu-background),
       20%
+    );
+  }
+}
+
+.button-search {
+  @include mixins.button-common-styles;
+  background-color: map-get(color.$theme-header, button-search-background);
+
+  &:hover {
+    background-color: darken(
+      map-get(color.$theme-header, button-search-background),
+      8%
+    );
+  }
+  &:active {
+    background-color: darken(
+      map-get(color.$theme-header, button-search-background),
+      16%
     );
   }
 }
