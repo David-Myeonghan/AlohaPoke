@@ -1,12 +1,14 @@
+import { MouseEvent } from "react";
 import "./Button.scss";
 
 type ButtonPropType = {
-  menu: { name: string; type: string };
+  menu: { name: string; type: string | undefined };
+  onClick: (e: MouseEvent<HTMLButtonElement>) => void;
 };
-const Button = ({ menu }: ButtonPropType) => {
+const Button = ({ menu, onClick }: ButtonPropType) => {
   const className = getButtonStyle(menu.type);
   return (
-    <button key={menu.name} className={className}>
+    <button key={menu.name} className={className} onClick={onClick}>
       {menu.name}
     </button>
   );
@@ -14,7 +16,7 @@ const Button = ({ menu }: ButtonPropType) => {
 
 export default Button;
 
-const getButtonStyle = (type: string) => {
+const getButtonStyle = (type: string | undefined) => {
   let className = "";
   switch (type) {
     case "search":

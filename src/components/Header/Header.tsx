@@ -26,7 +26,11 @@ const Header = () => {
       <div className="right-section">
         <div className="menu-box">
           {MenuItem.map((menu) => (
-            <Button menu={menu} />
+            <Button
+              key={menu.name}
+              menu={menu}
+              onClick={(e) => console.log(e)}
+            />
           ))}
         </div>
         <div className="search-box">
@@ -35,7 +39,7 @@ const Header = () => {
             value={searchValue}
             onChange={handleSearchFieldChange}
           />
-          <Button menu={SearchItem} />
+          <Button menu={SearchItem} onClick={(e) => console.log(e)} />
         </div>
       </div>
     </header>
