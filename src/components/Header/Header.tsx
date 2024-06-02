@@ -2,7 +2,13 @@ import "./Header.scss";
 import { ChangeEvent, useState } from "react";
 import { Button } from "../index";
 
-const MenuItem = [{ name: "menu1" }, { name: "menu2" }, { name: "menu3" }];
+const MenuItem = [
+  { name: "menu1", type: "menu" },
+  { name: "menu2", type: "menu" },
+  { name: "menu3", type: "menu" },
+];
+const SearchItem = { name: "Search", type: "search" };
+
 const Header = () => {
   const [searchValue, setSearchValue] = useState("");
 
@@ -23,12 +29,13 @@ const Header = () => {
             <Button menu={menu} />
           ))}
         </div>
-        <div>
+        <div className="search-box">
           <input
             className="search-input"
             value={searchValue}
             onChange={handleSearchFieldChange}
           />
+          <Button menu={SearchItem} />
         </div>
       </div>
     </header>
