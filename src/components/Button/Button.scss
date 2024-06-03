@@ -2,8 +2,19 @@
 @use "../../styles/text" as text;
 @use "../../styles/mixins";
 
-.button-menu {
+.button-small {
   @include mixins.button-common-styles;
+}
+
+.button-medium {
+  @include mixins.button-common-styles;
+}
+
+.button-massive {
+  @include mixins.button-common-styles;
+}
+
+.color-primary {
   background-color: map-get(color.$theme-header, button-menu-background);
 
   &:hover {
@@ -20,20 +31,54 @@
   }
 }
 
-.button-search {
-  @include mixins.button-common-styles;
-  background-color: map-get(color.$theme-header, button-search-background);
-
+.color-error {
+  background-color: map-get(color.$theme-header, button-menu-background);
   &:hover {
     background-color: darken(
-      map-get(color.$theme-header, button-search-background),
-      8%
+      map-get(color.$theme-header, button-menu-background),
+      10%
     );
   }
   &:active {
     background-color: darken(
-      map-get(color.$theme-header, button-search-background),
-      16%
+      map-get(color.$theme-header, button-menu-background),
+      20%
     );
   }
 }
+//
+//.button-menu {
+//  @include mixins.button-common-styles;
+//  background-color: map-get(color.$theme-header, button-menu-background);
+//
+//  &:hover {
+//    background-color: darken(
+//      map-get(color.$theme-header, button-menu-background),
+//      10%
+//    );
+//  }
+//  &:active {
+//    background-color: darken(
+//      map-get(color.$theme-header, button-menu-background),
+//      20%
+//    );
+//  }
+//}
+//
+//.button-search {
+//  @include mixins.button-common-styles;
+//  background-color: map-get(color.$theme-header, button-search-background);
+//
+//  &:hover {
+//    background-color: darken(
+//      map-get(color.$theme-header, button-search-background),
+//      8%
+//    );
+//  }
+//  &:active {
+//    background-color: darken(
+//      map-get(color.$theme-header, button-search-background),
+//      16%
+//    );
+//  }
+//}
