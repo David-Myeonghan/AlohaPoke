@@ -3,11 +3,11 @@ import { ChangeEvent, useState } from "react";
 import { Button } from "../index";
 
 const MenuItem = [
-  { name: "menu1", size: "medium", color: "primary" },
-  { name: "menu2", size: "medium", color: "primary" },
-  { name: "menu3", size: "medium", color: "primary" },
+  { name: "small", size: "small" },
+  { name: "medium", size: "medium" },
+  { name: "Massive Button", size: "massive" },
 ] as const;
-const SearchItem = { name: "Search", size: "medium", color: "error" } as const;
+const SearchItem = { name: "Search", color: "error" } as const;
 
 const Header = () => {
   const [searchValue, setSearchValue] = useState("");

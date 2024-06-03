@@ -3,6 +3,7 @@ import "./Button.scss";
 
 type ButtonSizeType = "small" | "medium" | "massive";
 type ButtonColorType = "primary" | "error";
+// type variant??
 
 type ButtonPropType = {
   menu: { name: string; size?: ButtonSizeType; color?: ButtonColorType };
@@ -16,7 +17,7 @@ const Button = ({ menu, onClick }: ButtonPropType) => {
   return (
     <button
       key={menu.name}
-      className={`${buttonSize} ${buttonColor}`}
+      className={`common ${buttonSize} ${buttonColor}`}
       onClick={onClick}
     >
       {menu.name}

@@ -4,7 +4,7 @@
 .header {
   box-sizing: border-box;
   border: 1px solid black;
-  height: 60px;
+  //height: 60px;
 
   display: flex;
   justify-content: space-between;
@@ -12,7 +12,7 @@
 
   padding: 8px 12px;
 
-  background-color: map-get(color.$theme-header, background);
+  background-color: map-get(color.$color-background, header);
 }
 
 .logo {
@@ -38,6 +38,8 @@
 
 .menu-box {
   display: flex;
+  align-items: center;
+
   gap: 12px;
 }
 

@@ -1,84 +1,54 @@
 @use "../../styles/color" as color;
 @use "../../styles/text" as text;
-@use "../../styles/mixins";
+
+.common {
+  width: fit-content;
+  height: fit-content;
+  border: 0;
+  border-radius: 8px;
+}
 
 .button-small {
-  @include mixins.button-common-styles;
+  font-size: text.$text-t3;
+  font-weight: 600;
+
+  padding: 6px 16px;
 }
 
 .button-medium {
-  @include mixins.button-common-styles;
+  font-size: text.$text-t2;
+  font-weight: 600;
+
+  padding: 8px 16px;
 }
 
 .button-massive {
-  @include mixins.button-common-styles;
+  font-size: text.$text-t1;
+  font-weight: 700;
+
+  padding: 12px 24px;
 }
 
 .color-primary {
-  background-color: map-get(color.$theme-header, button-menu-background);
+  color: map-get(color.$color-common, white);
+  background-color: map-get(color.$color-primary, main);
 
   &:hover {
-    background-color: darken(
-      map-get(color.$theme-header, button-menu-background),
-      10%
-    );
+    background-color: darken(map-get(color.$color-primary, main), 10%);
   }
   &:active {
-    background-color: darken(
-      map-get(color.$theme-header, button-menu-background),
-      20%
-    );
+    background-color: darken(map-get(color.$color-primary, main), 20%);
   }
 }
 
 .color-error {
-  background-color: map-get(color.$theme-header, button-menu-background);
+  color: map-get(color.$color-common, white);
+  background-color: map-get(color.$color-error, main);
+
   &:hover {
-    background-color: darken(
-      map-get(color.$theme-header, button-menu-background),
-      10%
-    );
+    background-color: darken(map-get(color.$color-error, main), 10%);
   }
   &:active {
-    background-color: darken(
-      map-get(color.$theme-header, button-menu-background),
-      20%
-    );
+    background-color: darken(map-get(color.$color-error, main), 20%);
   }
 }
-//
-//.button-menu {
-//  @include mixins.button-common-styles;
-//  background-color: map-get(color.$theme-header, button-menu-background);
-//
-//  &:hover {
-//    background-color: darken(
-//      map-get(color.$theme-header, button-menu-background),
-//      10%
-//    );
-//  }
-//  &:active {
-//    background-color: darken(
-//      map-get(color.$theme-header, button-menu-background),
-//      20%
-//    );
-//  }
-//}
-//
-//.button-search {
-//  @include mixins.button-common-styles;
-//  background-color: map-get(color.$theme-header, button-search-background);
-//
-//  &:hover {
-//    background-color: darken(
-//      map-get(color.$theme-header, button-search-background),
-//      8%
-//    );
-//  }
-//  &:active {
-//    background-color: darken(
-//      map-get(color.$theme-header, button-search-background),
-//      16%
-//    );
-//  }
-//}
