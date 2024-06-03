@@ -1,13 +1,23 @@
-$theme-header: (
-  background: #1f2949,
-  button-menu-background: #7dbffb,
-  button-menu-color: #fff,
-  button-search-background: #f6805d,
+$color-primary: (
+  light: #71b3ff,
+  main: #3196ef,
+  dark: #0062b7,
 );
 
-$theme-list: (
+$color-error: (
+  light: #f3869d,
+  main: #ec3a5d,
+  dark: #c5082f,
+);
+
+$color-common: (
+  white: #fff,
+  black: #000,
+);
+
+$color-background: (
+  header: #1f2949,
   background-primary: #e3f2fd,
   background-secondary: #6e7c99,
   border: #98a6c0,
-  warning: #ed5877,
 );
