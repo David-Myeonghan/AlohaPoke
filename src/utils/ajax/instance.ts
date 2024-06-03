@@ -1,5 +1,4 @@
 import ky from "ky";
-
-const POKE_BASE_URL = "https://pokeapi.co/api/v2/";
+import { POKE_BASE_URL } from "../../constants/config";
 
 export const api = ky.create({ prefixUrl: POKE_BASE_URL });
