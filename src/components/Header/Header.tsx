@@ -7,7 +7,7 @@ const MenuItem = [
   { name: "medium", size: "medium" },
   { name: "Massive Button", size: "massive" },
 ] as const;
-const SearchItem = { name: "Search", color: "error" } as const;
+const SearchButton = { name: "Search", color: "error" } as const;
 
 const Header = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -39,7 +39,7 @@ const Header = () => {
             value={searchValue}
             onChange={handleSearchFieldChange}
           />
-          <Button menu={SearchItem} onClick={(e) => console.log(e)} />
+          <Button menu={SearchButton} onClick={(e) => console.log(e)} />
         </div>
       </div>
     </header>
