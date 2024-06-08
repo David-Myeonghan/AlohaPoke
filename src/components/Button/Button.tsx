@@ -4,7 +4,6 @@ import classNames from "classnames/bind";
 
 type ButtonSizeType = "small" | "medium" | "massive";
 type ButtonColorType = "primary" | "error";
-// type variant??
 
 type ButtonPropType = {
   size?: ButtonSizeType;
@@ -15,8 +14,13 @@ type ButtonPropType = {
 
 const cx = classNames.bind(styles);
 
-const Button = ({ size, color, onClick, children }: ButtonPropType) => {
-  const className = cx("common", size ?? "medium", color ?? "primary");
+const Button = ({
+  size = "medium",
+  color = "primary",
+  onClick,
+  children,
+}: ButtonPropType) => {
+  const className = cx("common", size, color);
 
   return (
     <button className={className} onClick={onClick}>
