@@ -31,14 +31,14 @@ const getButtonSize = (size?: ButtonSizeType) => {
   let className = "";
   switch (size) {
     case "small":
-      className = "button-small";
+      className = "small";
       break;
     case "medium":
     default:
-      className = "button-medium";
+      className = "medium";
       break;
     case "massive":
-      className = "button-massive";
+      className = "massive";
       break;
   }
   return className;
@@ -49,10 +49,10 @@ const getButtonColor = (color?: ButtonColorType) => {
   switch (color) {
     case "primary":
     default:
-      className = "color-primary";
+      className = "primary";
       break;
     case "error":
-      className = "color-error";
+      className = "error";
       break;
   }
   return className;

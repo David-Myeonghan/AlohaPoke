@@ -1,5 +1,5 @@
-@use "../../styles/color" as color;
-@use "../../styles/text" as text;
+@use "../../styles/color.module" as color;
+@use "../../styles/text.module" as text;
 
 .common {
   width: fit-content;
@@ -8,47 +8,47 @@
   border-radius: 8px;
 }
 
-.button-small {
-  font-size: text.$text-t3;
+.small {
+  font-size: 18px;
   font-weight: 600;
 
   padding: 6px 16px;
 }
 
-.button-medium {
-  font-size: text.$text-t2;
+.medium {
+  font-size: 24px;
   font-weight: 600;
 
   padding: 8px 16px;
 }
 
-.button-massive {
-  font-size: text.$text-t1;
+.massive {
+  font-size: 32px;
   font-weight: 700;
 
   padding: 12px 24px;
 }
 
-.color-primary {
-  color: map-get(color.$color-common, white);
-  background-color: map-get(color.$color-primary, main);
+.primary {
+  color: map-get(color.$common, white);
+  background-color: map-get(color.$primary, main);
 
   &:hover {
-    background-color: darken(map-get(color.$color-primary, main), 10%);
+    background-color: darken(map-get(color.$primary, main), 10%);
   }
   &:active {
-    background-color: darken(map-get(color.$color-primary, main), 20%);
+    background-color: darken(map-get(color.$primary, main), 20%);
   }
 }
 
-.color-error {
-  color: map-get(color.$color-common, white);
-  background-color: map-get(color.$color-error, main);
+.error {
+  color: map-get(color.$common, white);
+  background-color: map-get(color.$error, main);
 
   &:hover {
-    background-color: darken(map-get(color.$color-error, main), 10%);
+    background-color: darken(map-get(color.$error, main), 10%);
   }
   &:active {
-    background-color: darken(map-get(color.$color-error, main), 20%);
+    background-color: darken(map-get(color.$error, main), 20%);
   }
 }

@@ -1,5 +1,5 @@
-@use "styles/color";
-@use "styles/text";
+@use "styles/color.module";
+@use "styles/text.module";
 
 .App {
   margin: 0 auto;

@@ -1,5 +1,5 @@
-import "./Header.scss";
 import { ChangeEvent, useState } from "react";
+import "./Header.scss";
 import { Button } from "../index";
 
 const MenuItem = [

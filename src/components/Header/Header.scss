@@ -1,5 +1,5 @@
-@use "../../styles/color" as color;
-@use "../../styles/text" as text;
+@use "../../styles/color.module" as color;
+@use "../../styles/text.module" as text;
 
 .header {
   box-sizing: border-box;
@@ -11,8 +11,7 @@
   align-items: center;
 
   padding: 8px 12px;
-
-  background-color: map-get(color.$color-background, header);
+  background-color: map-get(color.$background, header);
 }
 
 .logo {
