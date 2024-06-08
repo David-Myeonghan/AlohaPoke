@@ -1,12 +1,15 @@
 import { ChangeEvent, useState } from "react";
 import styles from "./Header.module.scss";
 import { Button } from "../index";
+import classNames from "classnames/bind";
 
 const MenuItem = [
   { text: "small", size: "small" },
   { text: "medium", size: "medium" },
   { text: "Massive Button", size: "massive" },
 ] as const;
+
+const cx = classNames.bind(styles);
 
 const Header = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -16,14 +19,21 @@ const Header = () => {
     setSearchValue(value);
   };
 
+  const header = cx("header");
+  const logo = cx("logo");
+  const rightSection = cx("right-section");
+  const menuBox = cx("menu-box");
+  const searchBox = cx("search-box");
+  const searchInput = cx("search-input");
+
   return (
-    <header className={styles.header}>
-      <div className={styles.logo}>
+    <header className={header}>
+      <div className={logo}>
         <img src={"/logo/pokemon.webp"} alt="pokemon logo" />
       </div>
 
-      <div className={styles.rightSection}>
-        <div className={styles.menuBox}>
+      <div className={rightSection}>
+        <div className={menuBox}>
           {MenuItem.map((menu) => (
             <Button
               key={menu.text}
@@ -34,9 +44,9 @@ const Header = () => {
             </Button>
           ))}
         </div>
-        <div className={styles.searchBox}>
+        <div className={searchBox}>
           <input
-            className={styles.searchInput}
+            className={searchInput}
             value={searchValue}
             onChange={handleSearchFieldChange}
           />
