@@ -11,8 +11,8 @@ type TypographyPropType = {
   size: TypographySizeType;
   tag?: string;
 };
-const Typography = ({ children, size }: TypographyPropType) => {
-  const className = cx(size ?? "t3");
+const Typography = ({ children, size = "t3" }: TypographyPropType) => {
+  const className = cx(size);
   const Tag = size === "t1" ? "h1" : size === "t2" ? "h2" : "p";
 
   return <Tag className={className}>{children}</Tag>;
