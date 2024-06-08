@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import "./App.css";
-import Header from "./components/Header/Header";
+import "./App.scss";
+import { Header, Typography } from "./components";
 import { api } from "./utils/ajax/instance";
 import { pokemon } from "./constants/api";
 
@@ -16,6 +16,10 @@ function App() {
   return (
     <div className="App">
       <Header />
+      <Typography size={"t1"}>This is typography t1</Typography>
+      <Typography size={"t2"}>This is typography t1</Typography>
+      <Typography size={"t3"}>This is typography t1</Typography>
+      <Typography size={"t4"}>This is typography t1</Typography>
     </div>
   );
 }
