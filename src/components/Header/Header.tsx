@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from "react";
-import "./Header.scss";
+import styles from "./Header.module.scss";
 import { Button } from "../index";
 
 const MenuItem = [
@@ -18,13 +18,13 @@ const Header = () => {
   };
 
   return (
-    <header className="header">
-      <div className="logo">
+    <header className={styles.header}>
+      <div className={styles.logo}>
         <img src={"/logo/pokemon.webp"} alt="pokemon logo" />
       </div>
 
-      <div className="right-section">
-        <div className="menu-box">
+      <div className={styles.rightSection}>
+        <div className={styles.menuBox}>
           {MenuItem.map((menu) => (
             <Button
               key={menu.name}
@@ -33,9 +33,9 @@ const Header = () => {
             />
           ))}
         </div>
-        <div className="search-box">
+        <div className={styles.searchBox}>
           <input
-            className="search-input"
+            className={styles.searchInput}
             value={searchValue}
             onChange={handleSearchFieldChange}
           />
