@@ -3,9 +3,9 @@ import styles from "./Header.module.scss";
 import { Button } from "../index";
 
 const MenuItem = [
-  { name: "small", size: "small" },
-  { name: "medium", size: "medium" },
-  { name: "Massive Button", size: "massive" },
+  { text: "small", size: "small" },
+  { text: "medium", size: "medium" },
+  { text: "Massive Button", size: "massive" },
 ] as const;
 const SearchButton = { name: "Search", color: "error" } as const;
 
@@ -27,10 +27,12 @@ const Header = () => {
         <div className={styles.menuBox}>
           {MenuItem.map((menu) => (
             <Button
-              key={menu.name}
-              menu={menu}
+              key={menu.text}
+              size={menu.size}
               onClick={(e) => console.log(e)}
-            />
+            >
+              {menu.text}
+            </Button>
           ))}
         </div>
         <div className={styles.searchBox}>
@@ -39,7 +41,9 @@ const Header = () => {
             value={searchValue}
             onChange={handleSearchFieldChange}
           />
-          <Button menu={SearchButton} onClick={(e) => console.log(e)} />
+          <Button color={SearchButton.color} onClick={(e) => console.log(e)}>
+            Search
+          </Button>
         </div>
       </div>
     </header>
