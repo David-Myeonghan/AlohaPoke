@@ -1,5 +1,6 @@
 import { MouseEvent } from "react";
-import "./Button.scss";
+import styles from "./Button.module.scss";
+import classNames from "classnames/bind";
 
 type ButtonSizeType = "small" | "medium" | "massive";
 type ButtonColorType = "primary" | "error";
@@ -10,50 +11,17 @@ type ButtonPropType = {
   onClick: (e: MouseEvent<HTMLButtonElement>) => void;
 };
 
+const cx = classNames.bind(styles);
+
 const Button = ({ menu, onClick }: ButtonPropType) => {
-  const buttonSize = getButtonSize(menu.size);
-  const buttonColor = getButtonColor(menu.color);
+  const { name, size, color } = menu;
+  const className = cx("common", size ?? "medium", color ?? "primary");
 
   return (
-    <button
-      key={menu.name}
-      className={`common ${buttonSize} ${buttonColor}`}
-      onClick={onClick}
-    >
-      {menu.name}
+    <button key={name} className={className} onClick={onClick}>
+      {name}
     </button>
   );
 };
 
 export default Button;
-
-const getButtonSize = (size?: ButtonSizeType) => {
-  let className = "";
-  switch (size) {
-    case "small":
-      className = "small";
-      break;
-    case "medium":
-    default:
-      className = "medium";
-      break;
-    case "massive":
-      className = "massive";
-      break;
-  }
-  return className;
-};
-
-const getButtonColor = (color?: ButtonColorType) => {
-  let className = "";
-  switch (color) {
-    case "primary":
-    default:
-      className = "primary";
-      break;
-    case "error":
-      className = "error";
-      break;
-  }
-  return className;
-};
