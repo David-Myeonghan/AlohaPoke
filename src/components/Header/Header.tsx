@@ -19,21 +19,14 @@ const Header = () => {
     setSearchValue(value);
   };
 
-  const header = cx("header");
-  const logo = cx("logo");
-  const rightSection = cx("right-section");
-  const menuBox = cx("menu-box");
-  const searchBox = cx("search-box");
-  const searchInput = cx("search-input");
-
   return (
-    <header className={header}>
-      <div className={logo}>
+    <header className={cx("header")}>
+      <div className={cx("logo")}>
         <img src={"/logo/pokemon.webp"} alt="pokemon logo" />
       </div>
 
-      <div className={rightSection}>
-        <div className={menuBox}>
+      <div className={cx("right-section")}>
+        <div className={cx("menu-box")}>
           {MenuItem.map((menu) => (
             <Button
               key={menu.text}
@@ -44,9 +37,9 @@ const Header = () => {
             </Button>
           ))}
         </div>
-        <div className={searchBox}>
+        <div className={cx("search-box")}>
           <input
-            className={searchInput}
+            className={cx("search-input")}
             value={searchValue}
             onChange={handleSearchFieldChange}
           />
