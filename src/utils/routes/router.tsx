@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import React from "react";
 import { Header } from "../../components";
 import { MainList } from "../../pages";
+import { MAIN_LIST_ROUTERS } from "../../constants/routers";
 
 export const router = createBrowserRouter([
   {
@@ -9,7 +10,7 @@ export const router = createBrowserRouter([
     element: <Header />,
     children: [
       {
-        path: "/main-list",
+        path: MAIN_LIST_ROUTERS.index,
         element: <MainList />,
       },
     ],
