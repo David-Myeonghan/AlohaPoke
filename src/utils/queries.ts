@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
+import { api } from "utils/ajax/instance";
+import { pokemon } from "constants/api";
 import { getRandomPokemonIds } from "./random";
-import { api } from "./ajax/instance";
-import { pokemon } from "../constants/api";
 
 const getMultiRandomPokemonList = async (number: number) => {
   const ids = getRandomPokemonIds(number);

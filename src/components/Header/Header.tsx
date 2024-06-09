@@ -1,8 +1,8 @@
 import { ChangeEvent, useState } from "react";
-import styles from "./Header.module.scss";
-import { Button } from "../index";
-import classNames from "classnames/bind";
 import { Outlet } from "react-router-dom";
+import classNames from "classnames/bind";
+import styles from "./Header.module.scss";
+import { Button } from "components";
 
 const MenuItem = [
   { text: "small", size: "small" },
