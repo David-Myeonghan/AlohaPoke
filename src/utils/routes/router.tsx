@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import React from "react";
 import { Header } from "../../components";
+import { MainList } from "../../pages";
 
 export const router = createBrowserRouter([
   {
@@ -9,7 +10,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/main-list",
-        element: <div>Main Page</div>,
+        element: <MainList />,
       },
     ],
     // errorElement: <ErrorPage/>
