@@ -1,0 +1,24 @@
+@use "styles/color.module" as color;
+
+.Card-layout {
+  width: 200px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+
+  border: 1px solid map-get(color.$background, border);
+  border-radius: 12px;
+  background: radial-gradient(
+    circle,
+    map-get(color.$background, header),
+    map-get(color.$background, background-primary)
+  );
+  color: map-get(color.$common, white);
+
+  img {
+    width: 180px;
+  }
+}
