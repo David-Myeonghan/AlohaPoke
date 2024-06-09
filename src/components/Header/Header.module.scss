@@ -1,6 +1,11 @@
 @use "../../styles/color.module" as color;
 @use "../../styles/text.module" as text;
 
+.App {
+  margin: 0 auto;
+  max-width: 1080px;
+}
+
 .header {
   box-sizing: border-box;
   border: 1px solid black;
