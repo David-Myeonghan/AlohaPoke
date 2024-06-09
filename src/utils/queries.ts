@@ -3,12 +3,17 @@ import { api } from "utils/ajax/instance";
 import { pokemon } from "constants/api";
 import { getRandomPokemonIds } from "./random";
 
+export type PokemonResponseType = {
+  sprites: { front_default: string };
+  name: string;
+};
+
 const getMultiRandomPokemonList = async (number: number) => {
   const ids = getRandomPokemonIds(number);
   const promises = ids.map((id) => api.get(pokemon(id)).json());
   try {
     const pokemonList = await Promise.all(promises);
-    return pokemonList;
+    return pokemonList as PokemonResponseType[];
   } catch (err) {
     console.log(err);
     throw err;
