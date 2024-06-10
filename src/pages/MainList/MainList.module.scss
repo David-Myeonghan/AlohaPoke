@@ -1,6 +1,7 @@
 @use "styles/color.module" as color;
 
 .Main-list-layout {
+  //height: 100vh;
   padding-top: 8px;
 
   background-color: map-get(color.$background, background-primary);

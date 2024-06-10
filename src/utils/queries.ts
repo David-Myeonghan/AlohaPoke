@@ -8,6 +8,7 @@ export type PokemonResponseType = {
   name: string;
 };
 
+// TODO: id 중복 방지 Map 으로 추가?
 const getMultiRandomPokemonList = async (number: number) => {
   const ids = getRandomPokemonIds(number);
   const promises = ids.map((id) => api.get(pokemon(id)).json());
