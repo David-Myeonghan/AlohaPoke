@@ -1,8 +1,10 @@
 @use "styles/color.module" as color;
 
 .Main-list-layout {
-  flex: 1;
-  padding-top: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
+  padding-top: 8px;
   background-color: map-get(color.$background, background-primary);
 }

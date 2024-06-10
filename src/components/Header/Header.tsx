@@ -51,7 +51,9 @@ const Header = () => {
           </div>
         </div>
       </header>
-      <Outlet />
+      <div className={cx("Content-wrapper")}>
+        <Outlet />
+      </div>
     </div>
   );
 };
