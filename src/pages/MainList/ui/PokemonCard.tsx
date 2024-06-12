@@ -39,8 +39,8 @@ export default function PokemonCard({ pokemon }: PokemonCardPropType) {
   }, []);
 
   return (
-    <div className={cx("Card-layout")}>
-      <div ref={loadingRef} className={cx("Loading-box")}>
+    <div className={cx("card-layout")}>
+      <div ref={loadingRef} className={cx("loading-box")}>
         <Loading size="small" />
       </div>
       <img

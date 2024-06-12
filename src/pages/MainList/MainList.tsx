@@ -9,7 +9,7 @@ export default function MainList() {
   const { data, isLoading } = useRandomPokemonList(20);
 
   return (
-    <div className={cx("Main-list-layout")}>
+    <div className={cx("main-list-layout")}>
       {isLoading ? <Loading /> : <PokemonList pokemonList={data} />}
       {/*<Loading />*/}
     </div>

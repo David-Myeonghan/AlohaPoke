@@ -1,7 +1,7 @@
 @use "styles/color.module" as color;
 @use "styles/text.module" as text;
 
-.App {
+.container {
   margin: 0 auto;
   height: 100%;
   max-width: 1080px;
@@ -62,6 +62,6 @@
   border-radius: 68px;
 }
 
-.Content-wrapper {
+.content-wrapper {
   flex: 1;
 }

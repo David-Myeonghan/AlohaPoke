@@ -4,7 +4,7 @@ import classNames from "classnames/bind";
 import styles from "./Header.module.scss";
 import { Button } from "components";
 
-const MenuItem = [
+const menuItem = [
   { text: "small", size: "small" },
   { text: "medium", size: "medium" },
   { text: "Massive Button", size: "massive" },
@@ -21,7 +21,7 @@ const Header = () => {
   };
 
   return (
-    <div className={cx("App")}>
+    <div className={cx("container")}>
       <header className={cx("header")}>
         <div className={cx("logo")}>
           <img src={"/logo/pokemon.webp"} alt="pokemon logo" />
@@ -29,7 +29,7 @@ const Header = () => {
 
         <div className={cx("right-section")}>
           <div className={cx("menu-box")}>
-            {MenuItem.map((menu) => (
+            {menuItem.map((menu) => (
               <Button
                 key={menu.text}
                 size={menu.size}
@@ -51,7 +51,7 @@ const Header = () => {
           </div>
         </div>
       </header>
-      <div className={cx("Content-wrapper")}>
+      <div className={cx("content-wrapper")}>
         <Outlet />
       </div>
     </div>
