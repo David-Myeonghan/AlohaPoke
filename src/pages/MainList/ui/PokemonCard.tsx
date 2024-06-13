@@ -1,4 +1,4 @@
-import { PokemonResponseType } from "utils/queries";
+import { pokemonType } from "utils/queries";
 import styles from "./PokemonCard.module.scss";
 import classNames from "classnames/bind";
 import { Typography } from "components";
@@ -8,9 +8,11 @@ import Loading from "components/Loading/Loading";
 const cx = classNames.bind(styles);
 
 type PokemonCardPropType = {
-  pokemon: PokemonResponseType;
+  pokemon: pokemonType;
 };
 export default function PokemonCard({ pokemon }: PokemonCardPropType) {
+  const pokemonId = pokemon.url.match(/(?<=\b\/)\d+/)?.["0"];
+
   const imageRef = useRef<HTMLImageElement>(null);
   const loadingRef = useRef<HTMLDivElement>(null);
 
@@ -23,7 +25,7 @@ export default function PokemonCard({ pokemon }: PokemonCardPropType) {
         loadingElement.style.display = "none";
       }
       if (imageElement) {
-        imageElement.style.display = "block";
+        imageElement.style.display = "inline";
       }
     };
 
@@ -44,7 +46,7 @@ export default function PokemonCard({ pokemon }: PokemonCardPropType) {
         <Loading size="small" />
       </div>
       <img
-        src={pokemon.sprites.front_default}
+        src={`https://raw.githubusercontent.com/pokeapi/sprites/master/sprites/pokemon/other/dream-world/${pokemonId}.svg`}
         alt={pokemon.name}
         ref={imageRef}
       />

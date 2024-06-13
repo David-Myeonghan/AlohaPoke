@@ -1,12 +1,12 @@
-import { PokemonResponseType } from "utils/queries";
 import styles from "./PokemonList.module.scss";
 import PokemonCard from "./PokemonCard";
 import classNames from "classnames/bind";
+import { pokemonType } from "../../../utils/queries";
 
 const cx = classNames.bind(styles);
 
 type PokemonListPropType = {
-  pokemonList: PokemonResponseType[] | undefined;
+  pokemonList: pokemonType[] | undefined;
 };
 export default function PokemonList({ pokemonList }: PokemonListPropType) {
   return (

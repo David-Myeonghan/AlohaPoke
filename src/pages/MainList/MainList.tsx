@@ -1,16 +1,16 @@
 import styles from "./MainList.module.scss";
 import classNames from "classnames/bind";
-import { useRandomPokemonList } from "../../utils/queries";
+import { usePokemonList } from "../../utils/queries";
 import PokemonList from "./ui/PokemonList";
 import Loading from "components/Loading/Loading";
 
 const cx = classNames.bind(styles);
 export default function MainList() {
-  const { data, isLoading } = useRandomPokemonList(20);
+  const { data, isLoading } = usePokemonList({ limit: 20 });
 
   return (
     <div className={cx("main-list-layout")}>
-      {isLoading ? <Loading /> : <PokemonList pokemonList={data} />}
+      {isLoading ? <Loading /> : <PokemonList pokemonList={data?.results} />}
       {/*<Loading />*/}
     </div>
   );
