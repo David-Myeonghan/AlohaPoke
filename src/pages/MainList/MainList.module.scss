@@ -1,6 +1,7 @@
 @use "styles/color.module" as color;
 
 .main-list-layout {
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
