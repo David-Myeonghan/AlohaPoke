@@ -1,34 +1,57 @@
 import { useQuery } from "@tanstack/react-query";
 import { api } from "utils/ajax/instance";
-import { pokemon } from "constants/api";
-import { getRandomPokemonIds } from "./random";
+import {
+  pokemonDetail,
+  pokemonList,
+  PokemonListParamType,
+} from "constants/api";
 
-export type PokemonResponseType = {
+export type pokemonType = {
+  name: string;
+  url: string;
+};
+
+export type PokemonListResponseType = {
+  results: pokemonType[];
+};
+
+const getPokemonList = async (params: PokemonListParamType) => {
+  const response = await api.get(pokemonList(params)).json();
+  console.log(response);
+  return response as PokemonListResponseType;
+};
+
+export const usePokemonList = (params: PokemonListParamType) => {
+  return useQuery({
+    queryKey: usePokemonList.getKey(params),
+    queryFn: () => getPokemonList(params),
+  });
+};
+
+usePokemonList.getKey = (params: PokemonListParamType) => [
+  "pokemon-list",
+  params,
+];
+
+export type PokemonDetailResponseType = {
   sprites: { front_default: string };
   name: string;
 };
-
-// TODO: id 중복 방지 Map 으로 추가?
-const getMultiRandomPokemonList = async (number: number) => {
-  const ids = getRandomPokemonIds(number);
-  const promises = ids.map((id) => api.get(pokemon(id)).json());
+const getPokemonDetail = async (idOrName: string) => {
   try {
-    const pokemonList = await Promise.all(promises);
-    return pokemonList as PokemonResponseType[];
+    const response = await api.get(pokemonDetail(idOrName)).json();
+    return response as PokemonDetailResponseType;
   } catch (err) {
     console.log(err);
     throw err;
   }
 };
 
-export const useRandomPokemonList = (number: number = 10) => {
+export const usePokemonDetail = (idOrName: string) => {
   return useQuery({
-    queryKey: useRandomPokemonList.getKey(number),
-    queryFn: () => getMultiRandomPokemonList(number),
+    queryKey: usePokemonDetail.getKey(idOrName),
+    queryFn: () => getPokemonDetail(idOrName),
   });
 };
 
-useRandomPokemonList.getKey = (number: number) => [
-  "random-pokemon-list",
-  number,
-];
+usePokemonDetail.getKey = (idOrName: string) => ["pokemon-detail", idOrName];
