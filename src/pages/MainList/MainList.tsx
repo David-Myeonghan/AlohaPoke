@@ -17,7 +17,6 @@ export default function MainList() {
       ) : (
         <PokemonList pokemonList={data?.results} />
       )}
-      {/*<Loading />*/}
     </div>
   );
 }
