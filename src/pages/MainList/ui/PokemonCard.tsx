@@ -1,9 +1,9 @@
-import { pokemonType } from "utils/queries";
 import styles from "./PokemonCard.module.scss";
 import classNames from "classnames/bind";
 import { Typography } from "components";
 import { useEffect, useRef } from "react";
 import Loading from "components/Loading/Loading";
+import { pokemonType } from "types/pokemon";
 
 const cx = classNames.bind(styles);
 
@@ -13,29 +13,28 @@ type PokemonCardPropType = {
 export default function PokemonCard({ pokemon }: PokemonCardPropType) {
   const pokemonId = pokemon.url.match(/(?<=\b\/)\d+/)?.["0"];
 
-  const imageRef = useRef<HTMLImageElement>(null);
   const loadingRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
-    const imageElement = imageRef.current;
     const loadingElement = loadingRef.current;
-
-    const showImage = () => {
+    const imageElement = imageRef.current;
+    const handleLoad = () => {
       if (loadingElement) {
         loadingElement.style.display = "none";
       }
       if (imageElement) {
-        imageElement.style.display = "inline";
+        imageElement.style.visibility = "visible";
       }
     };
 
     if (imageElement) {
-      imageElement.addEventListener("load", showImage);
+      imageElement.onload = handleLoad;
     }
 
     return () => {
       if (imageElement) {
-        imageElement.removeEventListener("load", showImage);
+        imageElement.onload = null;
       }
     };
   }, []);
@@ -45,9 +44,11 @@ export default function PokemonCard({ pokemon }: PokemonCardPropType) {
       <div ref={loadingRef} className={cx("loading-box")}>
         <Loading size="small" />
       </div>
+
       <img
         src={`https://raw.githubusercontent.com/pokeapi/sprites/master/sprites/pokemon/other/dream-world/${pokemonId}.svg`}
         alt={pokemon.name}
+        loading="lazy"
         ref={imageRef}
       />
       <Typography size={"t3"}>{pokemon.name}</Typography>

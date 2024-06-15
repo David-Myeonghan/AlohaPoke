@@ -1,7 +1,7 @@
 import styles from "./PokemonList.module.scss";
 import PokemonCard from "./PokemonCard";
 import classNames from "classnames/bind";
-import { pokemonType } from "../../../utils/queries";
+import { pokemonType } from "types/pokemon";
 
 const cx = classNames.bind(styles);
 

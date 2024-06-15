@@ -1,6 +1,6 @@
 import styles from "./MainList.module.scss";
 import classNames from "classnames/bind";
-import { usePokemonList } from "../../utils/queries";
+import { usePokemonList } from "hooks/usePokemonList";
 import PokemonList from "./ui/PokemonList";
 import Loading from "components/Loading/Loading";
 
