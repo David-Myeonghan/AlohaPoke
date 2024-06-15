@@ -3,6 +3,7 @@ import React from "react";
 import { Header } from "components";
 import { MainList } from "pages";
 import { ROUTES } from "constants/routers";
+import { ErrorPage } from "pages/ErrorPage";
 
 export const router = createBrowserRouter([
   {
@@ -18,6 +19,6 @@ export const router = createBrowserRouter([
         element: <div>Detail Page</div>,
       },
     ],
-    // errorElement: <ErrorPage/>
+    errorElement: <ErrorPage />,
   },
 ]);
