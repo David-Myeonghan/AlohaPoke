@@ -1,10 +1,18 @@
-@use "../../styles/color.module" as color;
-@use "../../styles/text.module" as text;
+@use "styles/color.module" as color;
+@use "styles/text.module" as text;
+
+.container {
+  margin: 0 auto;
+  height: 100%;
+  max-width: 1080px;
+  display: flex;
+  flex-direction: column;
+}
 
 .header {
   box-sizing: border-box;
   border: 1px solid black;
-  //height: 60px;
+  height: 60px;
 
   display: flex;
   justify-content: space-between;
@@ -52,4 +60,9 @@
   height: 24px;
   padding: 8px 12px;
   border-radius: 68px;
+}
+
+.content-wrapper {
+  //flex: 1;
+  //height: calc(100vh - 60px);
 }

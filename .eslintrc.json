@@ -1,5 +1,10 @@
 {
-  "extends": ["react-app", "react-app/jest", "prettier"],
+  "extends": [
+    "react-app",
+    "react-app/jest",
+    "plugin:@tanstack/eslint-plugin-query/recommended",
+    "prettier"
+  ],
   "rules": {
     "no-unused-vars": "warn"
   }

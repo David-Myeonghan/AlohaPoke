@@ -1,6 +1,6 @@
 import React, { MouseEvent } from "react";
-import styles from "./Button.module.scss";
 import classNames from "classnames/bind";
+import styles from "./Button.module.scss";
 
 type ButtonSizeType = "small" | "medium" | "massive";
 type ButtonColorType = "primary" | "error";

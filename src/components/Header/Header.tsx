@@ -1,9 +1,10 @@
 import { ChangeEvent, useState } from "react";
-import styles from "./Header.module.scss";
-import { Button } from "../index";
+import { Outlet } from "react-router-dom";
 import classNames from "classnames/bind";
+import styles from "./Header.module.scss";
+import { Button } from "components";
 
-const MenuItem = [
+const menuItem = [
   { text: "small", size: "small" },
   { text: "medium", size: "medium" },
   { text: "Massive Button", size: "massive" },
@@ -20,35 +21,40 @@ const Header = () => {
   };
 
   return (
-    <header className={cx("header")}>
-      <div className={cx("logo")}>
-        <img src={"/logo/pokemon.webp"} alt="pokemon logo" />
-      </div>
+    <div className={cx("container")}>
+      <header className={cx("header")}>
+        <div className={cx("logo")}>
+          <img src={"/logo/pokemon.webp"} alt="pokemon logo" />
+        </div>
 
-      <div className={cx("right-section")}>
-        <div className={cx("menu-box")}>
-          {MenuItem.map((menu) => (
-            <Button
-              key={menu.text}
-              size={menu.size}
-              onClick={(e) => console.log(e)}
-            >
-              {menu.text}
+        <div className={cx("right-section")}>
+          <div className={cx("menu-box")}>
+            {menuItem.map((menu) => (
+              <Button
+                key={menu.text}
+                size={menu.size}
+                onClick={(e) => console.log(e)}
+              >
+                {menu.text}
+              </Button>
+            ))}
+          </div>
+          <div className={cx("search-box")}>
+            <input
+              className={cx("search-input")}
+              value={searchValue}
+              onChange={handleSearchFieldChange}
+            />
+            <Button color={"error"} onClick={(e) => console.log(e)}>
+              Search
             </Button>
-          ))}
+          </div>
         </div>
-        <div className={cx("search-box")}>
-          <input
-            className={cx("search-input")}
-            value={searchValue}
-            onChange={handleSearchFieldChange}
-          />
-          <Button color={"error"} onClick={(e) => console.log(e)}>
-            Search
-          </Button>
-        </div>
+      </header>
+      <div className={cx("content-wrapper")}>
+        <Outlet />
       </div>
-    </header>
+    </div>
   );
 };
 
