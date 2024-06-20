@@ -1,8 +1,9 @@
 import styles from "./DetailPage.module.scss";
 import classNames from "classnames/bind";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { usePokemonDetail } from "../../hooks/usePokemonDetail";
 import { useEffect } from "react";
+import { Button, Typography } from "../../components";
 
 const cx = classNames.bind(styles);
 export default function DetailPage() {
@@ -10,27 +11,73 @@ export default function DetailPage() {
   const queryParams = new URLSearchParams(location.search);
   const name = queryParams.get("name");
 
+  const navigate = useNavigate();
+
   const { data } = usePokemonDetail(name ?? "");
   console.log(data);
 
   if (!data) return <div>Error</div>;
 
   return (
-    <div>
-      <div>{data?.name}</div>
-      <div>{data?.id}</div>
-      <div>{data?.base_experience}</div>
-      <div>{data?.height}</div>
-      <div>{data?.weight}</div>
-      {data?.types.map(({ type }) => <div key={type.name}>{type.name}</div>)}
-      {data?.stats.map(({ base_stat, stat }) => (
-        <div key={stat.name}>
-          {stat.name}: {base_stat}
+    <div className={cx("container")}>
+      {/* Back Button */}
+      <div className={cx("button-section")}>
+        <Button onClick={() => navigate(-1)} color={"primary"}>
+          Back
+        </Button>
+      </div>
+
+      <div className={cx("image-section")}>
+        <img src={data?.sprites.front_default} />
+        <img src={data?.sprites.other.dream_world.front_default} />
+        <img src={data?.sprites.other["official-artwork"].front_default} />
+      </div>
+
+      <div className={cx("intro-section")}>
+        <div className={cx("name-box")}>
+          <Typography size={"t1"}>{data?.name}</Typography>
+          <Typography size={"t3"}>#&nbsp;{data?.id}</Typography>
         </div>
-      ))}
-      {data?.abilities.map(({ ability }) => (
-        <div key={ability.name}>{ability.name}</div>
-      ))}
+      </div>
+
+      <div className={cx("character-section")}>
+        <div>
+          <Typography size={"t2"}>{`Height: ${data?.height} cm`}</Typography>
+          <Typography size={"t2"}>{`Weight: ${data?.weight} kg`}</Typography>
+        </div>
+
+        {data?.types.map(({ type, slot }) => (
+          <div key={type.name}>
+            <Typography size={"t3"}>{type.name}</Typography>
+          </div>
+        ))}
+      </div>
+
+      {/*<div>{data?.base_experience}</div>*/}
+
+      <div className={cx("stat-section")}>
+        <div className={cx("stat-box")}>
+          {data?.stats.map(({ base_stat, stat }) => (
+            <div key={stat.name}>
+              <Typography size={"t3"}>{stat.name}</Typography>
+              <span className={cx("percentage-bar")}>
+                <span
+                  ref={(ref) => ref && (ref.style.width = `${base_stat}%`)}
+                  className={cx("progress")}
+                >
+                  <span>
+                    <Typography size={"t4"}>{base_stat}</Typography>
+                  </span>
+                </span>
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/*{data?.abilities.map(({ ability }) => (*/}
+      {/*  <div key={ability.name}>{ability.name}</div>*/}
+      {/*))}*/}
     </div>
   );
 }

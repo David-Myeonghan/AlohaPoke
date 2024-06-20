@@ -1,0 +1,135 @@
+@use "styles/color.module" as color;
+
+.container {
+  position: relative;
+  width: 100%;
+  border: 1px solid red;
+
+  padding: 100px 30px 0;
+}
+
+.button-section {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.image-section {
+  width: 100%;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+
+  img {
+    width: 200px;
+    height: 200px;
+  }
+  img:nth-of-type(even) {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+.intro-section {
+  height: 80px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.name-box {
+  position: relative;
+
+  h1 {
+    display: inline;
+    height: 100%;
+  }
+
+  p {
+    position: absolute;
+    top: 0;
+    right: -60px;
+    padding: 4px 8px;
+
+    border: 1px solid map-get(color.$common, black);
+    border-radius: 8px;
+
+    background-color: map-get(color.$background, border);
+    color: white;
+  }
+}
+
+.character-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+
+  div:first-of-type {
+    h2 {
+      display: inline;
+    }
+  }
+
+  div:not(:first-of-type) {
+    color: map-get(color.$common, white);
+    padding: 6px 16px;
+    border-radius: 50%;
+    background: map-get(color.$error, light);
+  }
+}
+
+.stat-section {
+  padding: 20px 100px;
+}
+
+.stat-box {
+  padding: 20px;
+  background-color: map-get(color.$background, border);
+  border: 2px solid map-get(color.$background, header);
+  border-radius: 16px;
+
+  > div:not(:last-of-type) {
+    margin-bottom: 10px;
+  }
+
+  p {
+    display: inline-block;
+    margin-right: 10px;
+    width: 130px;
+  }
+}
+
+.percentage-bar {
+  display: inline-block;
+  width: 70%;
+  height: 36px;
+  background-color: map-get(color.$common, white);
+  border-radius: 16px;
+
+  padding-left: 8px;
+}
+
+.progress {
+  display: inline-block;
+  margin-top: 8px;
+  background-color: map-get(color.$error, main);
+  border-radius: 16px;
+  height: 20px;
+
+  span {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+
+    p {
+      //display: inline-block;
+      width: fit-content;
+      height: 100%;
+      //text-align: end;
+      //padding-right: 10px;
+    }
+  }
+}
