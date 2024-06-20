@@ -2,8 +2,7 @@ import styles from "./DetailPage.module.scss";
 import classNames from "classnames/bind";
 import { useLocation, useNavigate } from "react-router-dom";
 import { usePokemonDetail } from "../../hooks/usePokemonDetail";
-import { useEffect } from "react";
-import { Button, Typography } from "../../components";
+import { Button, Loading, Typography } from "../../components";
 
 const cx = classNames.bind(styles);
 export default function DetailPage() {
@@ -13,10 +12,14 @@ export default function DetailPage() {
 
   const navigate = useNavigate();
 
-  const { data } = usePokemonDetail(name ?? "");
-  console.log(data);
+  const { data, isLoading } = usePokemonDetail(name ?? "");
 
-  if (!data) return <div>Error</div>;
+  if (isLoading)
+    return (
+      <div className={cx("loading")}>
+        <Loading />
+      </div>
+    );
 
   return (
     <div className={cx("container")}>
