@@ -45,7 +45,9 @@ export default function DetailPage() {
 
       <div className={cx("character-section")}>
         <div>
-          <Typography size={"t2"}>{`Height: ${data?.height} cm`}</Typography>
+          <Typography size={"t2"}>
+            {`Height: ${data?.height} cm`}&nbsp;
+          </Typography>
           <Typography size={"t2"}>{`Weight: ${data?.weight} kg`}</Typography>
         </div>
 
@@ -56,8 +58,6 @@ export default function DetailPage() {
         ))}
       </div>
 
-      {/*<div>{data?.base_experience}</div>*/}
-
       <div className={cx("stat-section")}>
         <div className={cx("stat-box")}>
           {data?.stats.map(({ base_stat, stat }) => (
@@ -65,7 +65,7 @@ export default function DetailPage() {
               <Typography size={"t3"}>{stat.name}</Typography>
               <span className={cx("percentage-bar")}>
                 <span
-                  ref={(ref) => ref && (ref.style.width = `${base_stat}%`)}
+                  style={{ width: `${base_stat}%` }}
                   className={cx("progress")}
                 >
                   <span>
@@ -77,10 +77,6 @@ export default function DetailPage() {
           ))}
         </div>
       </div>
-
-      {/*{data?.abilities.map(({ ability }) => (*/}
-      {/*  <div key={ability.name}>{ability.name}</div>*/}
-      {/*))}*/}
     </div>
   );
 }
