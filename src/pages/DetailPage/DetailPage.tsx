@@ -3,6 +3,7 @@ import classNames from "classnames/bind";
 import { useLocation, useNavigate } from "react-router-dom";
 import { usePokemonDetail } from "../../hooks/usePokemonDetail";
 import { Button, Loading, Typography } from "../../components";
+import PokemonImages from "./ui/PokemonImages";
 
 const cx = classNames.bind(styles);
 export default function DetailPage() {
@@ -14,6 +15,7 @@ export default function DetailPage() {
 
   const { data, isLoading } = usePokemonDetail(name ?? "");
 
+  if (data == null) return null;
   if (isLoading)
     return (
       <div className={cx("loading")}>
@@ -30,11 +32,7 @@ export default function DetailPage() {
         </Button>
       </div>
 
-      <div className={cx("image-section")}>
-        <img src={data?.sprites.front_default} />
-        <img src={data?.sprites.other.dream_world.front_default} />
-        <img src={data?.sprites.other["official-artwork"].front_default} />
-      </div>
+      <PokemonImages sprites={data.sprites} />
 
       <div className={cx("intro-section")}>
         <div className={cx("name-box")}>

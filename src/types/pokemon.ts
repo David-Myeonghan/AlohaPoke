@@ -1,11 +1,13 @@
-export type PokemonDetailResponseType = {
-  sprites: {
-    front_default: string;
-    other: {
-      dream_world: { front_default: string };
-      "official-artwork": { front_default: string };
-    };
+export type SpritesType = {
+  front_default: string;
+  other: {
+    dream_world: { front_default: string };
+    "official-artwork": { front_default: string };
   };
+};
+
+export type PokemonDetailResponseType = {
+  sprites: SpritesType;
   name: string;
   id: number;
   base_experience: number;
