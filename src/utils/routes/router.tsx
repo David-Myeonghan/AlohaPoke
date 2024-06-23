@@ -18,7 +18,7 @@ export const router = createBrowserRouter([
         path: `${ROUTES.detail.root}`,
         element: (
           <Suspense fallback={<Loading />}>
-            <DetailPage />,
+            <DetailPage />
           </Suspense>
         ),
       },
