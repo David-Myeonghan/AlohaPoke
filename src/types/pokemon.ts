@@ -6,6 +6,12 @@ export type SpritesType = {
   };
 };
 
+export type StatsType = {
+  base_stat: number;
+  effort: number;
+  stat: { name: string; url: string };
+};
+
 export type PokemonDetailResponseType = {
   sprites: SpritesType;
   name: string;
@@ -16,11 +22,7 @@ export type PokemonDetailResponseType = {
   //
   types: { slot: number; type: { name: string; url: string } }[];
   //
-  stats: {
-    base_stat: number;
-    effort: number;
-    stat: { name: string; url: string };
-  }[];
+  stats: StatsType[];
   abilities: {
     ability: { name: string; url: string };
     is_hidden: boolean;

@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { usePokemonDetail } from "../../hooks/usePokemonDetail";
 import { Button, Loading, Typography } from "../../components";
 import PokemonImages from "./ui/PokemonImages";
+import PokemonStats from "./ui/PokemonStats";
 
 const cx = classNames.bind(styles);
 export default function DetailPage() {
@@ -56,25 +57,7 @@ export default function DetailPage() {
         ))}
       </div>
 
-      <div className={cx("stat-section")}>
-        <div className={cx("stat-box")}>
-          {data?.stats.map(({ base_stat, stat }) => (
-            <div key={stat.name}>
-              <Typography size={"t3"}>{stat.name}</Typography>
-              <span className={cx("percentage-bar")}>
-                <span
-                  style={{ width: `${base_stat}%` }}
-                  className={cx("progress")}
-                >
-                  <span>
-                    <Typography size={"t4"}>{base_stat}</Typography>
-                  </span>
-                </span>
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
+      <PokemonStats stats={data.stats} />
     </div>
   );
 }
