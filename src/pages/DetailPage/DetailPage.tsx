@@ -27,9 +27,9 @@ export default function DetailPage() {
         </Button>
       </div>
 
-      {data?.sprites != null ? <PokemonImages sprites={data.sprites} /> : null}
-      {data != null ? <PokemonIntro data={data} /> : null}
-      {data?.stats != null ? <PokemonStats stats={data.stats} /> : null}
+      <PokemonImages sprites={data.sprites} />
+      <PokemonIntro data={data} />
+      <PokemonStats stats={data.stats} />
     </div>
   );
 }
