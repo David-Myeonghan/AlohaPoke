@@ -11,7 +11,6 @@ import {
 
 export const getPokemonList = async (params: PokemonListParamType) => {
   const response = await api.get(pokemonList(params)).json();
-  console.log(response);
   return response as PokemonListResponseType;
 };
 

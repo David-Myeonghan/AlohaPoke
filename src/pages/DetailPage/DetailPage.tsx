@@ -18,13 +18,6 @@ export default function DetailPage() {
 
   const { data, isLoading } = usePokemonDetail(paramName ?? "");
 
-  if (isLoading)
-    return (
-      <div className={cx("loading")}>
-        <Loading />
-      </div>
-    );
-
   return (
     <div className={cx("container")}>
       {/* Back Button */}
