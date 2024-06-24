@@ -1,9 +1,10 @@
 import styles from "./PokemonCard.module.scss";
 import classNames from "classnames/bind";
-import { Typography } from "components";
+import { Typography, Loading } from "components";
 import { useEffect, useRef } from "react";
-import Loading from "components/Loading/Loading";
 import { pokemonType } from "types/pokemon";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "constants/routers";
 
 const cx = classNames.bind(styles);
 
@@ -11,6 +12,7 @@ type PokemonCardPropType = {
   pokemon: pokemonType;
 };
 export default function PokemonCard({ pokemon }: PokemonCardPropType) {
+  const navigate = useNavigate();
   const pokemonId = pokemon.url.match(/(?<=\b\/)\d+/)?.["0"];
 
   const loadingRef = useRef<HTMLDivElement>(null);
@@ -40,7 +42,10 @@ export default function PokemonCard({ pokemon }: PokemonCardPropType) {
   }, []);
 
   return (
-    <div className={cx("card-layout")}>
+    <div
+      className={cx("card-layout")}
+      onClick={() => navigate(`${ROUTES.detail.root}?name=${pokemon.name}`)}
+    >
       <div ref={loadingRef} className={cx("loading-box")}>
         <Loading size="small" />
       </div>
