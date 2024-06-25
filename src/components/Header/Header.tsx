@@ -4,12 +4,6 @@ import classNames from "classnames/bind";
 import styles from "./Header.module.scss";
 import { Button } from "components";
 
-const menuItem = [
-  { text: "small", size: "small" },
-  { text: "medium", size: "medium" },
-  { text: "Massive Button", size: "massive" },
-] as const;
-
 const cx = classNames.bind(styles);
 
 const Header = () => {
@@ -28,17 +22,6 @@ const Header = () => {
         </div>
 
         <div className={cx("right-section")}>
-          <div className={cx("menu-box")}>
-            {menuItem.map((menu) => (
-              <Button
-                key={menu.text}
-                size={menu.size}
-                onClick={(e) => console.log(e)}
-              >
-                {menu.text}
-              </Button>
-            ))}
-          </div>
           <div className={cx("search-box")}>
             <input
               className={cx("search-input")}
