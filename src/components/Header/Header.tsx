@@ -1,18 +1,31 @@
-import { ChangeEvent, useState } from "react";
-import { Outlet } from "react-router-dom";
+import { ChangeEvent, useEffect, useState } from "react";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import classNames from "classnames/bind";
 import styles from "./Header.module.scss";
-import { Button } from "components";
+import { Button, Typography } from "components";
+import { getAllRecentPokemon } from "../../utils/IndexedDB/getRecentPokemon";
+import { RecentViewedPokemonType } from "../../utils/IndexedDB/addRecentPokemon";
 
 const cx = classNames.bind(styles);
 
 const Header = () => {
   const [searchValue, setSearchValue] = useState("");
+  const [recentPokemonList, setRecentPokemonList] = useState<
+    RecentViewedPokemonType[]
+  >([]);
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   const handleSearchFieldChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setSearchValue(value);
   };
+
+  useEffect(() => {
+    getAllRecentPokemon().then((res) => {
+      setRecentPokemonList(res);
+    });
+  }, [pathname]);
 
   return (
     <div className={cx("container")}>
@@ -20,6 +33,15 @@ const Header = () => {
         <div className={cx("logo")}>
           <img src={"/logo/pokemon.webp"} alt="pokemon logo" />
         </div>
+
+        {recentPokemonList.length ? (
+          <div className={cx("middle-section")}>
+            <Typography size={"t2"}>Recently Viewed:&nbsp;</Typography>
+            <span onClick={() => navigate(recentPokemonList[0].url)}>
+              <Typography size={"t2"}>{recentPokemonList[0].name}</Typography>
+            </span>
+          </div>
+        ) : null}
 
         <div className={cx("right-section")}>
           <div className={cx("search-box")}>
