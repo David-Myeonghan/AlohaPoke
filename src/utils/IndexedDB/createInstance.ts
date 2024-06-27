@@ -1,6 +1,5 @@
 export const RECENT_VIEW = "Recent View";
 
-// DB 연결이 이미 설정된 경우 캐싱된 결과 반환.
 class IndexedDB {
   private static instance: Promise<IDBDatabase> | null = null;
 
