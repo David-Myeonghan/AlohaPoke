@@ -1,12 +1,13 @@
 import styles from "./RecentView.module.scss";
 import classNames from "classnames/bind";
 import { Typography } from "../index";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import IndexedDBSingleton, {
   RECENT_VIEW,
   RecentViewedPokemonType,
 } from "utils/IndexedDB/IndexedDBSingleton";
 import { useLocation, useNavigate } from "react-router-dom";
+import useIndexChange from "hooks/useIndexChange";
 
 const cx = classNames.bind(styles);
 export default function RecentView() {
@@ -16,16 +17,10 @@ export default function RecentView() {
   const [recentPokemonList, setRecentPokemonList] = useState<
     RecentViewedPokemonType[]
   >([]);
-  console.log(recentPokemonList);
+
   const { index } = useIndexChange(recentPokemonList.length);
 
-  // const nameRef = useRef();
-
   useEffect(() => {
-    // const draw = () => {
-    //   const rafId = requestAnimationFrame(draw);
-    // };
-    //
     IndexedDBSingleton.getAllRecentPokemon(RECENT_VIEW).then((res) => {
       setRecentPokemonList(res);
     });
@@ -44,21 +39,3 @@ export default function RecentView() {
     </>
   );
 }
-
-const useIndexChange = (maxLength: number) => {
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    if (maxLength === 0) return;
-
-    const indexInterval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % maxLength);
-    }, 1000);
-
-    return () => {
-      clearInterval(indexInterval);
-    };
-  }, [maxLength]);
-
-  return { index };
-};
