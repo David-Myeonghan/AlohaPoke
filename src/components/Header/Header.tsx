@@ -3,8 +3,10 @@ import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import classNames from "classnames/bind";
 import styles from "./Header.module.scss";
 import { Button, Typography } from "components";
-import { getAllRecentPokemon } from "../../utils/IndexedDB/getRecentPokemon";
-import { RecentViewedPokemonType } from "../../utils/IndexedDB/addRecentPokemon";
+import IndexedDBSingleton, {
+  RECENT_VIEW,
+  RecentViewedPokemonType,
+} from "utils/IndexedDB/IndexedDBSingleton";
 
 const cx = classNames.bind(styles);
 
@@ -22,7 +24,7 @@ const Header = () => {
   };
 
   useEffect(() => {
-    getAllRecentPokemon().then((res) => {
+    IndexedDBSingleton.getAllRecentPokemon(RECENT_VIEW).then((res) => {
       setRecentPokemonList(res);
     });
   }, [pathname]);

@@ -8,7 +8,9 @@ import PokemonStats from "./ui/PokemonStats";
 import PokemonIntro from "./ui/PokemonIntro";
 import { ROUTES } from "../../constants/routers";
 import { useEffect } from "react";
-import { addRecentPokemon } from "../../utils/IndexedDB/addRecentPokemon";
+import IndexedDBSingleton, {
+  RECENT_VIEW,
+} from "utils/IndexedDB/IndexedDBSingleton";
 
 const cx = classNames.bind(styles);
 export default function DetailPage() {
@@ -23,7 +25,7 @@ export default function DetailPage() {
   useEffect(() => {
     if (!queryParams) return;
     const recent = { name: paramName ?? "", url: currentPath };
-    addRecentPokemon(recent);
+    IndexedDBSingleton.addRecentPokemon(RECENT_VIEW, recent);
   }, [queryParams, currentPath]);
 
   return (
