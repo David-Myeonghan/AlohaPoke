@@ -1,16 +1,24 @@
-import { addRecentPokemon } from "./addRecentPokemon";
-import { getAllRecentPokemon } from "./getRecentPokemon";
-
 export const RECENT_VIEW = "Recent View";
 
-type RecentViewedPokemonType = {
+export type RecentViewedPokemonType = {
   name: string;
   url: string;
 };
 
-class IndexedDB {
+export const createDB = (db: IDBDatabase) => {
+  if (!db.objectStoreNames.contains(RECENT_VIEW)) {
+    const objectStore = db.createObjectStore(RECENT_VIEW, {
+      keyPath: "name",
+      autoIncrement: true,
+    });
+    // create Index
+    // objectStore.createIndex('name', 'name', {unique: false})
+  }
+};
+
+class IndexedDBSingleton {
   // Private static instance
-  static #instance: IDBDatabase | null = null;
+  static #instance: Promise<IDBDatabase> | null = null;
 
   private constructor() {}
 
@@ -19,51 +27,56 @@ class IndexedDB {
     version: number,
     upgradeCallback?: (db: IDBDatabase) => void,
   ): Promise<IDBDatabase> {
-    return new Promise((resolve, reject) => {
-      if (IndexedDB.#instance) {
-        resolve(IndexedDB.#instance);
-        return;
-      }
+    if (!IndexedDBSingleton.#instance) {
+      IndexedDBSingleton.#instance = new Promise((resolve, reject) => {
+        const request = indexedDB.open(name, version);
 
-      const request = indexedDB.open(name, version);
-
-      request.onupgradeneeded = (event: IDBVersionChangeEvent) => {
-        const db = (event.target as IDBOpenDBRequest).result;
-        if (upgradeCallback) {
-          // use callback for createObjectStore();
-          upgradeCallback(db);
-        }
-      };
-      request.onsuccess = (event) => {
-        IndexedDB.#instance = (event.target as IDBOpenDBRequest).result;
-        resolve(IndexedDB.#instance);
-      };
-      request.onerror = (event) => {
-        reject((event.target as IDBOpenDBRequest).error);
-      };
-    });
+        request.onupgradeneeded = (event: IDBVersionChangeEvent) => {
+          const db = (event.target as IDBOpenDBRequest).result;
+          if (upgradeCallback) {
+            // use callback for createObjectStore();
+            upgradeCallback(db);
+          }
+        };
+        request.onsuccess = (event) => {
+          // IndexedDBSingleton.#instance = (
+          //   event.target as IDBOpenDBRequest
+          // ).result;
+          resolve((event.target as IDBOpenDBRequest).result);
+        };
+        request.onerror = (event) => {
+          reject((event.target as IDBOpenDBRequest).error);
+        };
+      });
+    }
+    return IndexedDBSingleton.#instance;
   }
 
   // Utility method to get a transaction
-  public static getTransaction(
+  private static async getTransaction(
     storeName: string,
     mode: IDBTransactionMode = "readonly",
-  ): IDBObjectStore {
-    if (!IndexedDB.#instance) {
+  ): Promise<IDBObjectStore> {
+    const instance = await IndexedDBSingleton.#instance;
+    if (!instance) {
       throw new Error("Database not opened");
     }
-    const transaction = IndexedDB.#instance.transaction(storeName, mode);
+    const transaction = instance.transaction(storeName, mode);
     return transaction.objectStore(storeName);
   }
 
   // Method to add data
-  public static addRecentPokemon(
+  public static async addRecentPokemon(
     storeName: string,
     data: RecentViewedPokemonType,
   ): Promise<IDBValidKey> {
+    const store = await IndexedDBSingleton.getTransaction(
+      storeName,
+      "readwrite",
+    );
+
     return new Promise((resolve, reject) => {
-      const store = IndexedDB.getTransaction(storeName, "readwrite");
-      const request = store.add(data);
+      const request = store.put(data);
 
       request.onsuccess = () => {
         resolve(request.result);
@@ -74,13 +87,14 @@ class IndexedDB {
     });
   }
 
-  public static getAllRecentPokemon(
+  public static async getAllRecentPokemon(
     storeName: string,
-    key: IDBValidKey,
-  ): Promise<any> {
+    // key: IDBValidKey,
+  ): Promise<RecentViewedPokemonType[]> {
+    const store = await IndexedDBSingleton.getTransaction(storeName);
+
     return new Promise((resolve, reject) => {
-      const store = IndexedDB.getTransaction(storeName);
-      const request = store.get(key);
+      const request = store.getAll();
 
       request.onsuccess = () => {
         resolve(request.result);
@@ -92,4 +106,4 @@ class IndexedDB {
   }
 }
 
-export default IndexedDB;
+export default IndexedDBSingleton;
