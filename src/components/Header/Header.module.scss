@@ -37,13 +37,6 @@
   }
 }
 
-.middle-section {
-  color: map-get(color.$error, main);
-  h2 {
-    display: inline-block;
-  }
-}
-
 .right-section {
   display: flex;
   align-items: center;
