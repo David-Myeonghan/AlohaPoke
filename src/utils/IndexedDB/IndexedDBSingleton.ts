@@ -53,7 +53,7 @@ class IndexedDBSingleton {
   }
 
   // Utility method to get a transaction
-  private static async getTransaction(
+  public static async getTransaction(
     storeName: string,
     mode: IDBTransactionMode = "readonly",
   ): Promise<IDBObjectStore> {
@@ -77,24 +77,6 @@ class IndexedDBSingleton {
 
     return new Promise((resolve, reject) => {
       const request = store.put(data);
-
-      request.onsuccess = () => {
-        resolve(request.result);
-      };
-      request.onerror = () => {
-        reject(request.error);
-      };
-    });
-  }
-
-  public static async getAllRecentPokemon(
-    storeName: string,
-    // key: IDBValidKey,
-  ): Promise<RecentViewedPokemonType[]> {
-    const store = await IndexedDBSingleton.getTransaction(storeName);
-
-    return new Promise((resolve, reject) => {
-      const request = store.getAll();
 
       request.onsuccess = () => {
         resolve(request.result);
