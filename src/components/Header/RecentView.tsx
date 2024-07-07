@@ -3,7 +3,7 @@ import classNames from "classnames/bind";
 import { Typography } from "../index";
 import { useNavigate } from "react-router-dom";
 import useIndexChange from "hooks/useIndexChange";
-import { useRecentPokemonList } from "store/recentPokemon";
+import { useRecentPokemonList } from "hooks/useRecentPokemonList";
 
 const cx = classNames.bind(styles);
 export default function RecentView() {
