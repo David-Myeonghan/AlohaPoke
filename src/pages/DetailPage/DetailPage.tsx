@@ -2,15 +2,14 @@ import styles from "./DetailPage.module.scss";
 import classNames from "classnames/bind";
 import { useLocation, useNavigate } from "react-router-dom";
 import { usePokemonDetail } from "../../hooks/usePokemonDetail";
-import { Button } from "../../components";
+import { Button } from "components";
 import PokemonImages from "./ui/PokemonImages";
 import PokemonStats from "./ui/PokemonStats";
 import PokemonIntro from "./ui/PokemonIntro";
-import { ROUTES } from "../../constants/routers";
+import { ROUTES } from "constants/routers";
 import { useEffect } from "react";
-import IndexedDBSingleton, {
-  RECENT_VIEW,
-} from "utils/IndexedDB/IndexedDBSingleton";
+import { RECENT_VIEW } from "utils/IndexedDB/IndexedDBSingleton";
+import { addRecentPokemon } from "store/recentPokemon";
 
 const cx = classNames.bind(styles);
 export default function DetailPage() {
@@ -25,7 +24,7 @@ export default function DetailPage() {
   useEffect(() => {
     if (!queryParams) return;
     const recent = { name: paramName ?? "", url: currentPath };
-    IndexedDBSingleton.addRecentPokemon(RECENT_VIEW, recent);
+    addRecentPokemon(RECENT_VIEW, recent);
   }, [queryParams, currentPath]);
 
   return (

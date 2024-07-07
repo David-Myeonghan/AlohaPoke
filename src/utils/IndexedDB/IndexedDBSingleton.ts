@@ -64,28 +64,6 @@ class IndexedDBSingleton {
     const transaction = instance.transaction(storeName, mode);
     return transaction.objectStore(storeName);
   }
-
-  // Method to add data
-  public static async addRecentPokemon(
-    storeName: string,
-    data: RecentViewedPokemonType,
-  ): Promise<IDBValidKey> {
-    const store = await IndexedDBSingleton.getTransaction(
-      storeName,
-      "readwrite",
-    );
-
-    return new Promise((resolve, reject) => {
-      const request = store.put(data);
-
-      request.onsuccess = () => {
-        resolve(request.result);
-      };
-      request.onerror = () => {
-        reject(request.error);
-      };
-    });
-  }
 }
 
 export default IndexedDBSingleton;

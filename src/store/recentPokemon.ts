@@ -1,39 +1,41 @@
 import { useEffect, useState } from "react";
 import IndexedDBSingleton, {
-  RECENT_VIEW,
   RecentViewedPokemonType,
 } from "utils/IndexedDB/IndexedDBSingleton";
-import { useLocation } from "react-router-dom";
 
-export function useRecentPokemonList() {
-  const { pathname } = useLocation();
-  const [recentPokemonList, setRecentPokemonList] = useState<
-    RecentViewedPokemonType[]
-  >([]);
+export const getAllRecentPokemon = async (
+  storeName: string,
+  // key: IDBValidKey,
+): Promise<RecentViewedPokemonType[]> => {
+  const store = await IndexedDBSingleton.getTransaction(storeName);
 
-  const getAllRecentPokemon = async (
-    storeName: string,
-    // key: IDBValidKey,
-  ): Promise<RecentViewedPokemonType[]> => {
-    const store = await IndexedDBSingleton.getTransaction(storeName);
+  return new Promise((resolve, reject) => {
+    const request = store.getAll();
 
-    return new Promise((resolve, reject) => {
-      const request = store.getAll();
+    request.onsuccess = () => {
+      resolve(request.result);
+    };
+    request.onerror = () => {
+      reject(request.error);
+    };
+  });
+};
 
-      request.onsuccess = () => {
-        resolve(request.result);
-      };
-      request.onerror = () => {
-        reject(request.error);
-      };
-    });
-  };
+// Method to add data
+export const addRecentPokemon = async (
+  storeName: string,
+  data: RecentViewedPokemonType,
+): Promise<IDBValidKey> => {
+  const store = await IndexedDBSingleton.getTransaction(storeName, "readwrite");
 
-  useEffect(() => {
-    getAllRecentPokemon(RECENT_VIEW).then((res) => {
-      setRecentPokemonList(res);
-    });
-  }, [pathname]);
+  return new Promise((resolve, reject) => {
+    const request = store.put(data);
 
-  return { recentPokemonList };
-}
+    request.onsuccess = () => {
+      resolve(request.result);
+    };
+    request.onerror = () => {
+      reject(request.error);
+    };
+  });
+};
