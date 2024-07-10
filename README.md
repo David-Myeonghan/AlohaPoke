@@ -1,46 +1,24 @@
-# Getting Started with Create React App
+# Recently Viewed Pokemon
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## IndexedDB
 
-## Available Scripts
+**객체 저장소(Object Store)**
 
-In the project directory, you can run:
+- 역할: IndexedDB 에서 데이터를 저장하는 기본 단위. SQL 테이블과 유사.
+- JS 객체 저장. key-value 쌍으로 구성.
+- 생성시 고유 키 경로(key path) 지정 가능. 키 경로는 각 객체를 고유하게 식별하는 데 사용.
+  <br />
 
-### `npm start`
+**Index**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- 역할: 객체 저장소에 저장된 데이터를 빠르게 검색할 수 있도록 도와줌.
+- 객체 저장소의 특정 속성을 기준으로 생성, 검색을 최적화하기 위해 사용.
+- DB 에서 그 인덱스.
+  <br />
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+**이벤트 발생 순서**
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. 'onupgradeneeded' - 데이터베이스 생성 또는 버전 업그레이드 시
+2. 'onsuccess' - 데이터베이스 연결 성공 시
+3. 'onerror' - 데이터베이스 연결 실패 또는 오류 발생 시
+4. 'oncomplete' - 트랜잭션 완료 시

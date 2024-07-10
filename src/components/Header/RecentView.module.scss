@@ -1,0 +1,9 @@
+@use "styles/color.module" as color;
+
+.container {
+  color: map-get(color.$error, main);
+  h2 {
+    display: inline-block;
+    text-transform: capitalize;
+  }
+}
