@@ -1,11 +1,11 @@
-import styles from "./DetailPage.module.scss";
 import classNames from "classnames/bind";
 import { useLocation, useNavigate } from "react-router-dom";
-import { usePokemonDetail } from "../../hooks/usePokemonDetail";
-import { Button } from "components";
+import styles from "./DetailPage.module.scss";
 import PokemonImages from "./ui/PokemonImages";
 import PokemonStats from "./ui/PokemonStats";
 import PokemonIntro from "./ui/PokemonIntro";
+import { usePokemonDetail } from "hooks/usePokemonDetail";
+import { Button } from "components";
 import { ROUTES } from "constants/routers";
 import { useEffect } from "react";
 import { RECENT_VIEW } from "utils/IndexedDB/IndexedDBSingleton";
