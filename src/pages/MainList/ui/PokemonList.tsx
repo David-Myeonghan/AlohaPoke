@@ -8,11 +8,11 @@ import styles from "./PokemonList.module.scss";
 
 const cx = classNames.bind(styles);
 
-type PokemonListPropType = {
+interface PokemonListProps {
   pokemonList: pokemonType[] | undefined;
-};
+}
 
-export default function PokemonList({ pokemonList }: PokemonListPropType) {
+export default function PokemonList({ pokemonList }: PokemonListProps) {
   const navigate = useNavigate();
 
   return (

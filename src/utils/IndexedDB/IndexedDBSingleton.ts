@@ -1,9 +1,9 @@
 export const RECENT_VIEW = "Recent View";
 
-export type RecentViewedPokemonType = {
+export interface RecentViewedPokemon {
   name: string;
   url: string;
-};
+}
 
 export const createDB = (db: IDBDatabase) => {
   if (!db.objectStoreNames.contains(RECENT_VIEW)) {

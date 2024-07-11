@@ -6,12 +6,12 @@ import styles from "./Button.module.scss";
 type ButtonSizeType = "small" | "medium" | "massive";
 type ButtonColorType = "primary" | "error";
 
-type ButtonPropType = {
+interface ButtonProps {
   size?: ButtonSizeType;
   color?: ButtonColorType;
   children?: React.ReactNode;
   onClick: (e: MouseEvent<HTMLButtonElement>) => void;
-};
+}
 
 const cx = classNames.bind(styles);
 
@@ -20,7 +20,7 @@ const Button = ({
   color = "primary",
   onClick,
   children,
-}: ButtonPropType) => {
+}: ButtonProps) => {
   const className = cx("common", size, color);
 
   return (

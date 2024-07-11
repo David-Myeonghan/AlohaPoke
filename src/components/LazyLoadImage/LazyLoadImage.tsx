@@ -6,15 +6,15 @@ import styles from "./LazyLoadImage.module.scss";
 
 const cx = classNames.bind(styles);
 
-type LazyLoadImagePropType = {
+interface LazyLoadImageProps {
   imageSource: string;
   alt?: string;
-};
+}
 
 export default function LazyLoadImage({
   imageSource,
   alt,
-}: LazyLoadImagePropType) {
+}: LazyLoadImageProps) {
   const loadingRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
 

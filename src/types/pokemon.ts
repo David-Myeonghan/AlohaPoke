@@ -1,18 +1,18 @@
-export type SpritesType = {
+export interface SpritesType {
   front_default: string;
   other: {
     dream_world: { front_default: string };
     "official-artwork": { front_default: string };
   };
-};
+}
 
-export type StatsType = {
+export interface StatsType {
   base_stat: number;
   effort: number;
   stat: { name: string; url: string };
-};
+}
 
-export type PokemonDetailResponseType = {
+export interface PokemonDetailResponseType {
   sprites: SpritesType;
   name: string;
   id: number;
@@ -28,13 +28,13 @@ export type PokemonDetailResponseType = {
     is_hidden: boolean;
     slot: number;
   }[];
-};
+}
 
-export type pokemonType = {
+export interface pokemonType {
   name: string;
   url: string;
-};
+}
 
-export type PokemonListResponseType = {
+export interface PokemonListResponseType {
   results: pokemonType[];
-};
+}

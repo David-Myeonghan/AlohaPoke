@@ -3,12 +3,12 @@ import React from "react";
 
 import styles from "./Loading.module.scss";
 
-type LoadingPropType = {
+interface LoadingProps {
   size?: "small" | "medium";
-};
+}
 
 const cx = classNames.bind(styles);
-export default function Loading({ size = "medium" }: LoadingPropType) {
+export default function Loading({ size = "medium" }: LoadingProps) {
   const className = cx(size, "spinner");
 
   return <div className={className}></div>;

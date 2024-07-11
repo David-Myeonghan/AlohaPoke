@@ -5,10 +5,10 @@ import styles from "./PokemonImages.module.scss";
 
 const cx = classNames.bind(styles);
 
-type PokemonImagesPropType = {
+interface PokemonImagesProps {
   sprites: SpritesType;
-};
-export default function PokemonImages({ sprites }: PokemonImagesPropType) {
+}
+export default function PokemonImages({ sprites }: PokemonImagesProps) {
   const { front_default, other } = sprites;
 
   return (
