@@ -1,21 +1,22 @@
-import { Component, ErrorInfo, ReactNode } from "react";
+import React, { Component, ErrorInfo, ReactNode } from "react";
 import { ErrorPage } from "pages/ErrorPage";
 
-interface Props {
+interface ErrorBoundaryProps {
+  fallback: ReactNode;
   children: ReactNode;
 }
-interface State {
+interface ErrorBoundaryState {
   hasError: boolean;
   error?: Error;
 }
 
-class ErrorBoundary extends Component<Props, State> {
-  constructor(props: Props) {
+class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
+  constructor(props: ErrorBoundaryProps) {
     super(props);
     this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError(error: Error): State {
+  static getDerivedStateFromError(error: Error): ErrorBoundaryState {
     // 다음 렌더링에서 fallback UI를 보여줄 수 있도록 상태를 업데이트합니다.
     return { hasError: true, error };
   }
