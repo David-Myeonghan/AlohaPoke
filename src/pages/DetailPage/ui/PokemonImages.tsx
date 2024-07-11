@@ -1,8 +1,8 @@
 import { SpritesType } from "types/pokemon";
 import classNames from "classnames/bind";
+import { LazyLoadImage } from "components";
 
 import styles from "./PokemonImages.module.scss";
-import LazyLoadImage from "../../../components/LazyLoadImage/LazyLoadImage";
 
 const cx = classNames.bind(styles);
 
