@@ -22,7 +22,6 @@ export default function DetailPage() {
 
   const navigate = useNavigate();
   const { data, isLoading, isError } = usePokemonDetail(paramName ?? "");
-  console.log(isError);
 
   useEffect(() => {
     if (!queryParams) return;
