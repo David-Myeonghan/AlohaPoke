@@ -1,6 +1,6 @@
 import React, { ComponentProps, ComponentType, Suspense } from "react";
 
-import ErrorBoundary from "./ErrorBoundary";
+import ErrorBoundary from "../routes/ErrorBoundary";
 
 interface AsyncBoundaryProps {
   rejectedFallback: ComponentProps<typeof ErrorBoundary>["fallback"];
