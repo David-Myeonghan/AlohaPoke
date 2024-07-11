@@ -2,6 +2,7 @@ import { SpritesType } from "types/pokemon";
 import classNames from "classnames/bind";
 
 import styles from "./PokemonImages.module.scss";
+import LazyLoadImage from "../../../components/LazyLoadImage/LazyLoadImage";
 
 const cx = classNames.bind(styles);
 
@@ -13,9 +14,9 @@ export default function PokemonImages({ sprites }: PokemonImagesProps) {
 
   return (
     <div className={cx("image-section")}>
-      <img src={front_default} />
-      <img src={other.dream_world.front_default} />
-      <img src={other["official-artwork"].front_default} />
+      <LazyLoadImage imageSource={front_default} />
+      <LazyLoadImage imageSource={other.dream_world.front_default} />
+      <LazyLoadImage imageSource={other["official-artwork"].front_default} />
     </div>
   );
 }
