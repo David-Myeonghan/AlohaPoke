@@ -1,8 +1,9 @@
 import { ChangeEvent, useState } from "react";
 import { Outlet } from "react-router-dom";
 import classNames from "classnames/bind";
-import styles from "./Header.module.scss";
 import { Button } from "components";
+
+import styles from "./Header.module.scss";
 import RecentView from "./RecentView";
 
 const cx = classNames.bind(styles);

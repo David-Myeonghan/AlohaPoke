@@ -21,6 +21,7 @@ export default function PokemonList({ pokemonList }: PokemonListPropType) {
         const pokemonId = pokemon.url.match(/(?<=\b\/)\d+/)?.["0"];
         return (
           <div
+            key={pokemon.name}
             className={cx("card-layout")}
             onClick={() =>
               navigate(`${ROUTES.detail.root}?name=${pokemon.name}`)

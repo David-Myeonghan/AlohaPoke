@@ -1,7 +1,8 @@
-import styles from "./PokemonIntro.module.scss";
 import { Typography } from "components";
 import classNames from "classnames/bind";
 import { PokemonDetailResponseType } from "types/pokemon";
+
+import styles from "./PokemonIntro.module.scss";
 
 const cx = classNames.bind(styles);
 

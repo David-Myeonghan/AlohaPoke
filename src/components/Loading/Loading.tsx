@@ -1,6 +1,7 @@
-import styles from "./Loading.module.scss";
 import classNames from "classnames/bind";
 import React from "react";
+
+import styles from "./Loading.module.scss";
 
 type LoadingPropType = {
   size?: "small" | "medium";

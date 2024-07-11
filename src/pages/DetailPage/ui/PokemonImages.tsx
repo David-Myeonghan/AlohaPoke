@@ -1,6 +1,7 @@
-import styles from "./PokemonImages.module.scss";
 import { SpritesType } from "types/pokemon";
 import classNames from "classnames/bind";
+
+import styles from "./PokemonImages.module.scss";
 
 const cx = classNames.bind(styles);
 

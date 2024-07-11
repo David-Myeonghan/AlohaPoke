@@ -1,7 +1,8 @@
-import styles from "./PokemonStats.module.scss";
 import classNames from "classnames/bind";
 import { Typography } from "components";
 import { StatsType } from "types/pokemon";
+
+import styles from "./PokemonStats.module.scss";
 
 const cx = classNames.bind(styles);
 
