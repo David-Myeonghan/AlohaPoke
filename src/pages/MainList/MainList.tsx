@@ -2,7 +2,7 @@ import classNames from "classnames/bind";
 import { usePokemonList } from "hooks/usePokemonList";
 import Loading from "components/Loading/Loading";
 import { ErrorPage } from "pages/ErrorPage";
-import withAsyncBoundary from "utils/routes/withAsyncBoundary";
+import { withAsyncBoundary } from "utils/HOC";
 
 import styles from "./MainList.module.scss";
 import PokemonList from "./ui/PokemonList";

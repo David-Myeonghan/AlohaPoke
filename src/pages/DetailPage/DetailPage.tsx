@@ -1,37 +1,25 @@
-import { useEffect } from "react";
 import classNames from "classnames/bind";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { usePokemonDetail } from "hooks/usePokemonDetail";
 import { Button, Loading } from "components";
 import { ROUTES } from "constants/routers";
-import { RECENT_VIEW } from "utils/IndexedDB/IndexedDBSingleton";
-import { addRecentPokemon } from "store/recentPokemon";
+import { withAsyncBoundary, withAddRecentPokemon } from "utils/HOC";
+import { ErrorPage } from "pages/ErrorPage";
 
 import styles from "./DetailPage.module.scss";
 import PokemonImages from "./ui/PokemonImages";
 import PokemonStats from "./ui/PokemonStats";
 import PokemonIntro from "./ui/PokemonIntro";
-import withAsyncBoundary from "../../utils/routes/withAsyncBoundary";
-import { ErrorPage } from "../ErrorPage";
 
 const cx = classNames.bind(styles);
 function DetailPage() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const paramName = queryParams.get("name");
-  const currentPath = `${location.pathname}${location.search}`;
 
   const navigate = useNavigate();
-  const { data, isLoading, isError } = usePokemonDetail(paramName ?? "");
-
-  useEffect(() => {
-    if (!queryParams) return;
-    const recent = { name: paramName ?? "", url: currentPath };
-    addRecentPokemon(RECENT_VIEW, recent);
-  }, [queryParams, currentPath]);
-
-  if (isLoading || isError || !data) return <Loading />;
+  const { data } = usePokemonDetail(paramName ?? "");
 
   return (
     <div className={cx("container")}>
@@ -49,7 +37,7 @@ function DetailPage() {
   );
 }
 
-export default withAsyncBoundary(DetailPage, {
+export default withAsyncBoundary(withAddRecentPokemon(DetailPage), {
   pendingFallback: <Loading />,
   rejectedFallback: <ErrorPage />,
 });
