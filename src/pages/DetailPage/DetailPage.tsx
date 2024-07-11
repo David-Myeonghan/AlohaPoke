@@ -12,9 +12,11 @@ import styles from "./DetailPage.module.scss";
 import PokemonImages from "./ui/PokemonImages";
 import PokemonStats from "./ui/PokemonStats";
 import PokemonIntro from "./ui/PokemonIntro";
+import withAsyncBoundary from "../../utils/routes/withAsyncBoundary";
+import { ErrorPage } from "../ErrorPage";
 
 const cx = classNames.bind(styles);
-export default function DetailPage() {
+function DetailPage() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const paramName = queryParams.get("name");
@@ -46,3 +48,8 @@ export default function DetailPage() {
     </div>
   );
 }
+
+export default withAsyncBoundary(DetailPage, {
+  pendingFallback: <Loading />,
+  rejectedFallback: <ErrorPage />,
+});

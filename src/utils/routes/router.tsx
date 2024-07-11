@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
-import React, { Suspense } from "react";
-import { Header, Loading } from "components";
+import React from "react";
+import { Header } from "components";
 import { MainList, DetailPage } from "pages";
 import { ROUTES } from "constants/routers";
 import { ErrorPage } from "pages/ErrorPage";
@@ -16,11 +16,7 @@ export const router = createBrowserRouter([
       },
       {
         path: `${ROUTES.detail.root}`,
-        element: (
-          <Suspense fallback={<Loading />}>
-            <DetailPage />
-          </Suspense>
-        ),
+        element: <DetailPage />,
       },
     ],
     errorElement: <ErrorPage />,
