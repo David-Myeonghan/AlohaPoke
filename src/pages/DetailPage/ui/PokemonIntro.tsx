@@ -1,14 +1,15 @@
-import styles from "./PokemonIntro.module.scss";
 import { Typography } from "components";
 import classNames from "classnames/bind";
 import { PokemonDetailResponseType } from "types/pokemon";
 
+import styles from "./PokemonIntro.module.scss";
+
 const cx = classNames.bind(styles);
 
-type PokemonIntroPropType = {
+interface PokemonIntroProps {
   data: PokemonDetailResponseType;
-};
-export default function PokemonIntro({ data }: PokemonIntroPropType) {
+}
+export default function PokemonIntro({ data }: PokemonIntroProps) {
   return (
     <>
       <div className={cx("intro-section")}>

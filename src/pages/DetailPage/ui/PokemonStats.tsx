@@ -1,14 +1,15 @@
-import styles from "./PokemonStats.module.scss";
 import classNames from "classnames/bind";
 import { Typography } from "components";
 import { StatsType } from "types/pokemon";
 
+import styles from "./PokemonStats.module.scss";
+
 const cx = classNames.bind(styles);
 
-type PokemonStatsPropType = {
+interface PokemonStatsProps {
   stats: StatsType[];
-};
-export default function PokemonStats({ stats }: PokemonStatsPropType) {
+}
+export default function PokemonStats({ stats }: PokemonStatsProps) {
   return (
     <div className={cx("stat-section")}>
       <div className={cx("stat-box")}>

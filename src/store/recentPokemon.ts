@@ -1,11 +1,11 @@
 import IndexedDBSingleton, {
-  RecentViewedPokemonType,
+  RecentViewedPokemon,
 } from "utils/IndexedDB/IndexedDBSingleton";
 
 export const getAllRecentPokemon = async (
   storeName: string,
   // key: IDBValidKey,
-): Promise<RecentViewedPokemonType[]> => {
+): Promise<RecentViewedPokemon[]> => {
   const store = await IndexedDBSingleton.getTransaction(storeName);
 
   return new Promise((resolve, reject) => {
@@ -23,7 +23,7 @@ export const getAllRecentPokemon = async (
 // Method to add data
 export const addRecentPokemon = async (
   storeName: string,
-  data: RecentViewedPokemonType,
+  data: RecentViewedPokemon,
 ): Promise<IDBValidKey> => {
   const store = await IndexedDBSingleton.getTransaction(storeName, "readwrite");
 

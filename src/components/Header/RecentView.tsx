@@ -1,9 +1,10 @@
-import styles from "./RecentView.module.scss";
-import classNames from "classnames/bind";
-import { Typography } from "../index";
 import { useNavigate } from "react-router-dom";
+import classNames from "classnames/bind";
+import { Typography } from "components";
 import useIndexChange from "hooks/useIndexChange";
 import { useRecentPokemonList } from "hooks/useRecentPokemonList";
+
+import styles from "./RecentView.module.scss";
 
 const cx = classNames.bind(styles);
 export default function RecentView() {

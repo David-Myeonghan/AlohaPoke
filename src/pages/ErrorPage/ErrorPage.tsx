@@ -1,6 +1,7 @@
 import classNames from "classnames/bind";
-import styles from "./ErrorPage.module.scss";
 import { Typography } from "components";
+
+import styles from "./ErrorPage.module.scss";
 
 const cx = classNames.bind(styles);
 export default function ErrorPage() {

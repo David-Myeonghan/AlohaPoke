@@ -1,31 +1,25 @@
-import styles from "./DetailPage.module.scss";
 import classNames from "classnames/bind";
 import { useLocation, useNavigate } from "react-router-dom";
-import { usePokemonDetail } from "../../hooks/usePokemonDetail";
-import { Button } from "components";
+
+import { usePokemonDetail } from "hooks/usePokemonDetail";
+import { Button, Loading } from "components";
+import { ROUTES } from "constants/routers";
+import { withAsyncBoundary, withAddRecentPokemon } from "utils/HOC";
+import { ErrorPage } from "pages/ErrorPage";
+
+import styles from "./DetailPage.module.scss";
 import PokemonImages from "./ui/PokemonImages";
 import PokemonStats from "./ui/PokemonStats";
 import PokemonIntro from "./ui/PokemonIntro";
-import { ROUTES } from "constants/routers";
-import { useEffect } from "react";
-import { RECENT_VIEW } from "utils/IndexedDB/IndexedDBSingleton";
-import { addRecentPokemon } from "store/recentPokemon";
 
 const cx = classNames.bind(styles);
-export default function DetailPage() {
+function DetailPage() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const paramName = queryParams.get("name");
-  const currentPath = `${location.pathname}${location.search}`;
 
   const navigate = useNavigate();
-  const { data, isLoading } = usePokemonDetail(paramName ?? "");
-
-  useEffect(() => {
-    if (!queryParams) return;
-    const recent = { name: paramName ?? "", url: currentPath };
-    addRecentPokemon(RECENT_VIEW, recent);
-  }, [queryParams, currentPath]);
+  const { data } = usePokemonDetail(paramName ?? "");
 
   return (
     <div className={cx("container")}>
@@ -42,3 +36,8 @@ export default function DetailPage() {
     </div>
   );
 }
+
+export default withAsyncBoundary(withAddRecentPokemon(DetailPage), {
+  pendingFallback: <Loading />,
+  rejectedFallback: <ErrorPage />,
+});

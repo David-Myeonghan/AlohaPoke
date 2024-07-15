@@ -1,25 +1,12 @@
-import {
-  pokemonDetail,
-  pokemonList,
-  PokemonListParamType,
-} from "constants/api";
+import { pokemonDetail, pokemonList, PokemonListParam } from "constants/api";
 import { api } from "utils/ajax/instance";
 import {
   PokemonDetailResponseType,
   PokemonListResponseType,
 } from "types/pokemon";
 
-export const getPokemonList = async (params: PokemonListParamType) => {
-  const response = await api.get(pokemonList(params)).json();
-  return response as PokemonListResponseType;
-};
+export const getPokemonList = async (params: PokemonListParam) =>
+  (await api.get(pokemonList(params)).json()) as PokemonListResponseType;
 
-export const getPokemonDetail = async (idOrName: string) => {
-  try {
-    const response = await api.get(pokemonDetail(idOrName)).json();
-    return response as PokemonDetailResponseType;
-  } catch (err) {
-    console.log(err);
-    throw err;
-  }
-};
+export const getPokemonDetail = async (idOrName: string) =>
+  (await api.get(pokemonDetail(idOrName)).json()) as PokemonDetailResponseType;

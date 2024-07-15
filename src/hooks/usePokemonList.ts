@@ -1,15 +1,12 @@
-import { PokemonListParamType } from "constants/api";
-import { useQuery } from "@tanstack/react-query";
+import { PokemonListParam } from "constants/api";
+import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
 import { getPokemonList } from "remote/pokemon";
 
-export const usePokemonList = (params: PokemonListParamType) => {
-  return useQuery({
+export const usePokemonList = (params: PokemonListParam) => {
+  return useSuspenseQuery({
     queryKey: usePokemonList.getKey(params),
     queryFn: () => getPokemonList(params),
   });
 };
 
-usePokemonList.getKey = (params: PokemonListParamType) => [
-  "pokemon-list",
-  params,
-];
+usePokemonList.getKey = (params: PokemonListParam) => ["pokemon-list", params];
